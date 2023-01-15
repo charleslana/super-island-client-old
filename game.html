@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Super Island é um jogo de navegador RPG online para PC e celular. Jogue de graça agora mesmo!"
+    />
+    <title>Super Island - Online RPG Game</title>
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/icomoon/static/icomoon.ttf"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/thaleahfat/static/thaleahfat.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/lib/fontawesome-free-6.2.1/webfonts/fa-solid-900.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOmCnqEu92Fr1Mu4mxK.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOlCnqEu92Fr1MmWUlfBBc4.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOlCnqEu92Fr1MmYUtfBBc4.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      href="assets/images/favicon.png"
+      sizes="82x83"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/lib/bootstrap@5.2.3/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/lib/animate.css/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="assets/lib/fontawesome-free-6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/game.css" />
+  </head>
+  <body>
+    <header id="header">
+      <nav class="navbar fixed-top navbar-dark bg-dark p-0 vw-100">
+        <div class="progress w-100">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 25%"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div class="container-fluid p-1">
+          <div class="d-flex align-items-center" id="userLogged">
+            <img
+              src="assets/images/avatars/hero_order.png"
+              alt="Avatar image"
+              width="41"
+              height="41"
+              class="me-1 rounded-circle"
+            />
+            <div class="d-flex flex-column w-65px">
+              <div class="text-truncate">
+                <i class="icon-order align-middle"></i>
+                <span class="premium-nick name">user</span>
+                <!-- useraaaaaaaaaaa -->
+              </div>
+              <div class="d-flex">
+                <img
+                  src="assets/images/icons/premium.png"
+                  alt="Premium image"
+                  width="15"
+                  height="15"
+                />
+                <span class="ms-1">Nv. 3</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div
+              class="progress user-bar align-items-center justify-content-between p-1 me-1"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Carne <br>4900/100"
+              id="staminaTooltip"
+            >
+              <div
+                class="progress-bar flex-row"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <img
+                  src="assets/images/icons/stamina_2.png"
+                  alt="Stamina image"
+                  width="18"
+                  height="18"
+                />
+              </div>
+              <div>
+                <span id="minStamina">4990</span>/<span id="maxStamina"
+                  >100</span
+                >
+              </div>
+            </div>
+            <div
+              class="progress user-bar align-items-center justify-content-between p-1 me-1"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Ouro"
+            >
+              <div
+                class="progress-bar flex-row"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <img
+                  src="assets/images/icons/money_2.png"
+                  alt="Money image"
+                  width="18"
+                  height="18"
+                />
+              </div>
+              <div>2017</div>
+            </div>
+            <div
+              class="progress user-bar align-items-center justify-content-between p-1"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Diamante"
+            >
+              <div
+                class="progress-bar flex-row"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <img
+                  src="assets/images/icons/diamond.png"
+                  alt="Diamond image"
+                  width="18"
+                  height="18"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="add-cash"></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="root"></main>
+    <!-- Menu float -->
+    <div
+      class="float-menu-left d-flex flex-column align-items-center animate__animated animate__faster"
+    >
+      <div id="menuFloatHunt" class="mb-2">
+        <div class="float-menu-hunt position-relative">
+          <span
+            class="position-absolute top-0 end-0 translate-middle p-2 bg-danger border border-light rounded-circle"
+          >
+          </span>
+        </div>
+        <div class="text">Caçadas</div>
+      </div>
+      <div id="menuFloatTask" class="mb-2">
+        <div class="float-menu-task position-relative"></div>
+        <div class="text">Tarefas</div>
+      </div>
+      <div id="menuFloatRewards" class="mb-2">
+        <div class="float-menu-rewards position-relative"></div>
+        <div class="text">Prêmios</div>
+      </div>
+    </div>
+    <div
+      class="float-menu-left d-flex flex-column align-items-center animate__animated animate__faster"
+    >
+      <div id="menuFloatShop" class="mb-2">
+        <div class="float-menu-shop position-relative">
+          <span
+            class="position-absolute top-0 end-0 translate-middle p-2 bg-danger border border-light rounded-circle"
+          >
+          </span>
+        </div>
+        <div class="text">Shop</div>
+      </div>
+      <div id="menuFloatWheel" class="mb-2">
+        <div class="float-menu-wheel position-relative"></div>
+        <div class="text text-truncate">Girar Roda</div>
+      </div>
+      <div id="menuFloatRank" class="mb-2">
+        <div class="float-menu-rank position-relative"></div>
+        <div class="text text-truncate">TOP Rank</div>
+      </div>
+    </div>
+    <div
+      class="float-menu-left d-flex flex-column align-items-center animate__animated animate__faster"
+    >
+      <div id="menuFloatChallenge" class="mb-2">
+        <div class="float-menu-challenge position-relative">
+          <span
+            class="position-absolute top-0 end-0 translate-middle p-2 bg-danger border border-light rounded-circle"
+          >
+          </span>
+        </div>
+        <div class="text text-truncate">Desafios</div>
+      </div>
+      <div id="menuFloatEvents" class="mb-2">
+        <div class="float-menu-events position-relative"></div>
+        <div class="text text-truncate">Eventos</div>
+      </div>
+    </div>
+    <div
+      class="float-menu-right d-flex flex-column align-items-center animate__animated animate__faster"
+    >
+      <div id="menuFloatNews" class="mb-2">
+        <div class="float-menu-news position-relative">
+          <span
+            class="position-absolute top-0 end-0 translate-middle p-2 bg-danger border border-light rounded-circle"
+          >
+          </span>
+        </div>
+        <div class="text text-truncate">Notícias</div>
+      </div>
+      <div id="menuFloatHelp" class="mb-2">
+        <div class="float-menu-help position-relative"></div>
+        <div class="text text-truncate">Wiki</div>
+      </div>
+      <div id="menuFloatWalkthrough" class="mb-2">
+        <div class="float-menu-walkthrough position-relative">
+          <span
+            class="position-absolute top-0 end-0 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"
+          >
+          </span>
+        </div>
+        <div class="text text-truncate premium-nick">Fortalecer</div>
+      </div>
+    </div>
+    <!-- Menu float toggle -->
+    <div
+      class="float-menu-hide d-flex justify-content-center animate__animated"
+      id="floatMenuHide"
+    >
+      <i class="fa-solid fa-angle-up"></i>
+    </div>
+    <div
+      class="float-menu-show d-flex justify-content-center animate__animated animate__fadeOut"
+      id="floatMenuShow"
+      style="display: none !important"
+    >
+      <span
+        class="position-absolute bottom-0 end-0 bg-danger border border-light rounded-circle"
+      >
+      </span>
+      <i class="fa-solid fa-angle-down"></i>
+    </div>
+    <!-- Quest toggle -->
+    <div
+      class="quest-toggle d-flex align-items-center justify-content-center"
+      id="questToggle"
+    >
+      <i class="fa-solid fa-angle-left" id="questToggleIcon"></i>
+    </div>
+    <!-- Quest box -->
+    <div class="quest-box animate__animated animate__faster" id="questBox">
+      <div class="quest-text mb-1">
+        <span class="color-orange"># Missões principais #</span>
+      </div>
+      <div class="quest-text">
+        <span class="color-blue-3 mb-1 fw-bold">Part I - Duke, The Wise</span>
+        <br />
+        <span>Cace alguns <span class="color-yellow">Rabicutes</span> em</span>
+        <br />
+        <span class="color-green-3">Grassy Plains (0/15)</span>
+      </div>
+    </div>
+    <!-- Left menu bar -->
+    <div
+      class="left-menu-bar d-flex justify-content-center align-items-center"
+      id="leftMenuBarShow"
+    >
+      <span
+        class="position-absolute top-0 end-0 bg-danger border border-light rounded-circle"
+      >
+      </span>
+      <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <div
+      class="left-menu-expanded-bar d-flex justify-content-start align-items-center animate__animated animate__faster animate__slideOutLeft"
+      id="menuLeftExpandedBar"
+    >
+      <div class="d-flex flex-column align-items-center me-2" id="menuLeftMail">
+        <div class="float-left-menu-mail position-relative">
+          <span
+            class="position-absolute top-0 end-0 bg-danger border border-light rounded-circle"
+          >
+          </span>
+        </div>
+        <div class="text text-truncate">Correio</div>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center me-2"
+        id="menuLeftTrade"
+      >
+        <div class="float-left-menu-trade position-relative"></div>
+        <div class="text text-truncate">Trocas</div>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center me-2"
+        id="menuLeftFriend"
+      >
+        <div class="float-left-menu-friends position-relative"></div>
+        <div class="text text-truncate">Amigos</div>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center me-2"
+        id="menuLeftGuild"
+      >
+        <div class="float-left-menu-guilds position-relative"></div>
+        <div class="text text-truncate">Guilda</div>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center me-2"
+        id="menuLeftAchievements"
+      >
+        <div class="float-left-menu-achievements position-relative"></div>
+        <div class="text text-truncate">Triunfos</div>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center me-1"
+        id="menuLeftIndex"
+      >
+        <div class="float-left-menu-index position-relative"></div>
+        <div class="text text-truncate">Índice</div>
+      </div>
+      <div class="d-flex align-items-center" id="leftMenuBarHide">
+        <i class="fa-solid fa-angle-left"></i>
+      </div>
+    </div>
+    <!-- Chat toggle -->
+    <div
+      class="sidebar-chat-toggle d-flex justify-content-center align-items-center"
+    >
+      <span
+        class="position-absolute top-0 end-0 bg-danger border border-light rounded-circle animate__animated animate__flash animate__infinite"
+      >
+      </span>
+      <i class="fa-solid fa-comment-dots"></i>
+    </div>
+    <!-- Menu footer -->
+    <footer id="footer">
+      <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-around">
+          <div class="d-flex flex-column align-items-center" id="worldMap">
+            <div class="world-map position-relative">
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"
+              >
+              </span>
+            </div>
+            <div
+              class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
+            >
+              <span class="max-w-icon">Mundo</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-center" id="townMap">
+            <div class="town-map position-relative">
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"
+              >
+              </span>
+            </div>
+            <div
+              class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
+            >
+              <span class="max-w-icon">Cidade</span>
+            </div>
+          </div>
+          <div
+            class="d-flex flex-column align-items-center active"
+            id="homeMap"
+          >
+            <div class="home-map position-relative">
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+              >
+              </span>
+            </div>
+            <div
+              class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
+            >
+              <span class="max-w-icon">Casa</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-center" id="hero">
+            <div class="hero position-relative">
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"
+              >
+              </span>
+            </div>
+            <div
+              class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
+            >
+              <span class="max-w-icon">Herói</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-center" id="bag">
+            <div class="bag position-relative">
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle visually-hidden"
+              >
+              </span>
+            </div>
+            <div
+              class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
+            >
+              <span class="max-w-icon">Mochila</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </footer>
+    <!-- Chest afk -->
+    <div class="chest-afk spin animate__animated" id="chestAFKSpin"></div>
+    <div
+      id="chestAFK"
+      class="chest-afk-icon animate__animated animate__infinite animate__pulse"
+    ></div>
+    <!-- Bônus box -->
+    <div class="bonus-box d-flex justify-content-center">
+      <div
+        class="bonus d-flex flex-column align-items-center justify-content-center position-relative"
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Bônus Diário: EXP +10% (~7H 32M)"
+      >
+        <img src="assets/images/icons/exp.png" alt="Exp image" height="16" />
+        <div class="progress">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 33%"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <!-- News feed -->
+    <div
+      id="newsFeedBox"
+      class="news-feed-box d-flex justify-content-center animate__animated animate__fadeOut"
+    >
+      <div class="news-feed d-flex align-items-center position-relative">
+        <marquee scrolldelay="140" hspace="0px"
+          >O item <span class="color-yellow">Espada Yoru (Mistica)</span> foi
+          encontrado pelo jogador
+          <span class="color-yellow-2">user</span></marquee
+        >
+        <img
+          src="assets/images/icons/news_feed.png"
+          alt="News feed image"
+          height="28"
+        />
+      </div>
+    </div>
+    <!-- Toast -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x z-index-1065 pt-4"
+    >
+      <div
+        class="toast hide align-items-center text-white bg-warning border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-delay="4000"
+        id="toast"
+      >
+        <div class="d-flex">
+          <div
+            class="toast-body d-flex justify-content-center align-items-center w-100"
+            id="toast-text"
+          >
+            Hello, world! This is a toast message.
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto shadow-none"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal settings -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modalSettings"
+      tabindex="-1"
+      aria-labelledby="modalSettings"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-body-custom">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active w-100"
+                    id="settingsTab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#settings"
+                    type="button"
+                    role="tab"
+                    aria-controls="settings"
+                    aria-selected="true"
+                  >
+                    Ajustes
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link w-100"
+                    id="avatarTab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#avatar"
+                    type="button"
+                    role="tab"
+                    aria-controls="avatar"
+                    aria-selected="false"
+                  >
+                    Avatar
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link w-100"
+                    id="shortcutTab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#shortcut"
+                    type="button"
+                    role="tab"
+                    aria-controls="shortcut"
+                    aria-selected="false"
+                  >
+                    Atalhos
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link w-100"
+                    id="supportTab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#support"
+                    type="button"
+                    role="tab"
+                    aria-controls="support"
+                    aria-selected="false"
+                  >
+                    Suporte
+                  </button>
+                </li>
+              </ul>
+              <div
+                class="container tab-content pt-4 pb-4"
+                id="settingsTabContent"
+              >
+                <div
+                  class="tab-pane show active"
+                  id="settings"
+                  role="tabpanel"
+                  aria-labelledby="settingsTab"
+                >
+                  <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                      <div class="option-language"></div>
+                      <span>Idioma</span>
+                    </div>
+                    <select
+                      class="form-select w-auto shadow-none"
+                      aria-label="Language select option"
+                    >
+                      <option value="en">Inglês</option>
+                      <option value="pt" selected>Português</option>
+                      <option value="es">Espanhol</option>
+                    </select>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                      <div class="option-sound"></div>
+                      <span>Sons</span>
+                    </div>
+                    <div
+                      class="form-check form-switch d-flex align-items-center"
+                    >
+                      <input
+                        class="form-check-input shadow-none"
+                        type="checkbox"
+                        id="switchSound"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane"
+                  id="avatar"
+                  role="tabpanel"
+                  aria-labelledby="avatarTab"
+                >
+                  Avatar
+                </div>
+                <div
+                  class="tab-pane"
+                  id="shortcut"
+                  role="tabpanel"
+                  aria-labelledby="shortcutTab"
+                >
+                  Atalhos
+                </div>
+                <div
+                  class="tab-pane"
+                  id="support"
+                  role="tabpanel"
+                  aria-labelledby="supportTab"
+                >
+                  Suporte
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center p-3">
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                ><img
+                  src="assets/images/landing/facebook.png"
+                  alt="Facebook image"
+                  class="me-2"
+              /></a>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="assets/images/landing/discord.png"
+                  alt="Discord image"
+                />
+              </a>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary me-2"
+                data-bs-dismiss="modal"
+              >
+                Meu perfil
+              </button>
+              <button type="button" class="btn btn-warning" id="logout">
+                Sair
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Loading -->
+    <div class="loading-wrapper" id="loading">
+      <img src="assets/images/icons/loading.gif" alt="Loading image" />
+    </div>
+    <!-- Loader -->
+    <div class="loader-wrapper" id="loader">
+      <div class="loader-content">
+        <img src="assets/images/icons/loading.gif" alt="Loader image" />
+        <p>Carregando dados...</p>
+      </div>
+    </div>
+    <!-- Check internet -->
+    <div class="internet-wrapper" id="failedInternet">
+      <div class="failed-internet animate__animated animate__slideInDown">
+        Sua conexão com internet falhou!
+      </div>
+    </div>
+    <div class="internet-wrapper" id="successInternet">
+      <div class="success-internet animate__animated animate__slideInDown">
+        Sua conexão está de volta!
+      </div>
+    </div>
+    <script src="assets/lib/bootstrap@5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/preloadjs/preloadjs.min.js"></script>
+    <script src="assets/lib/soundjs/soundjs.min.js"></script>
+    <script src="assets/lib/interactjs/interact.min.js"></script>
+    <script src="assets/lib/axios/axios.min.js"></script>
+    <script src="assets/js/check.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Super Island é um jogo de navegador RPG online para PC e celular. Jogue de graça agora mesmo!"
+    />
+    <title>Super Island - Online RPG Game</title>
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/lato/static/S6uyw4BMUTPHjx4wXg.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/lato/static/S6u9w4BMUTPHh6UVSwiPGQ.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/lib/fontawesome-free-6.2.1/webfonts/fa-solid-900.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/thaleahfat/static/thaleahfat.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOmCnqEu92Fr1Mu4mxK.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/roboto/static/KFOlCnqEu92Fr1MmWUlfBBc4.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      href="assets/images/favicon.png"
+      sizes="82x83"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/lib/bootstrap@5.2.3/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/lib/animate.css/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="assets/lib/fontawesome-free-6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/index.css" />
+  </head>
+  <body class="home-color d-flex flex-column h-100">
+    <header class="d-none d-md-block">
+      <nav class="navbar navbar-light navbar-dark text-white">
+        <div class="container position-relative d-block">
+          <div class="row align-items-center">
+            <div class="col-4">
+              <a class="navbar-brand" href="index.html"
+                ><img
+                  src="assets/images/app_logo.png"
+                  alt="App logo image"
+                  height="72"
+              /></a>
+              <div class="row mt-2">
+                <div class="col-auto">
+                  <a href="#" target="_blank"
+                    ><i class="fas fa-newspaper"></i> Notícias</a
+                  >
+                </div>
+                <div class="col-auto">
+                  <a href="#" target="_blank"
+                    ><i class="fas fa-book"></i> Wiki</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+              <img
+                src="assets/images/logo/logo.png"
+                alt="Logo image"
+                width="230"
+              />
+            </div>
+            <div class="col-4"></div>
+          </div>
+          <div class="ribbon p-3 text-center fs-6 text-uppercase">
+            <img
+              src="assets/images/landing/chest.png"
+              alt="Chest image"
+              width="48"
+              height="48"
+            />
+            <p>Prêmio de novo jogador<br /><strong>Grátis!</strong></p>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="home-bg d-none d-md-block">
+      <div class="container mb-5">
+        <div class="row">
+          <div class="col-md-7 d-flex align-items-stretch mb-3">
+            <div class="card bg-dark text-white">
+              <h5 class="card-header text-uppercase p-3 fw-bold">
+                Bem vindo Herói!
+              </h5>
+              <div class="card-body card-about">
+                <h5 class="card-title">
+                  Super Island é um RPG online gratuito de navegador.
+                </h5>
+                <p class="card-text">
+                  Embarque em uma jornada para explorar ilhas desconhecidas.
+                  Batalhe com adversário dignos, Recrute novos personagens,
+                  encontre itens especiais para forjar novos equipamentos e
+                  junte-se a outros jogadores em batalhas épicas em tempo real!
+                  Desafie Chefes e avance pelos andares da Torre para encontrar
+                  tesouros preciosos! Enfrente desafios e torne-se o melhor de
+                  todos!
+                </p>
+                <small class="online">0 Heróis Online</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex align-items-stretch mb-3">
+            <div class="card bg-dark text-white login w-100">
+              <h5 class="card-header text-uppercase p-3 fw-bold">
+                Jogue Agora!
+              </h5>
+              <div
+                id="carouselExampleCaptions"
+                class="carousel slide carousel-fade"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="assets/images/landing/carousel_1.png"
+                      class="d-block w-100"
+                      alt="Carousel 1 image"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="assets/images/landing/carousel_2.png"
+                      class="d-block w-100"
+                      alt="Carousel 2 image"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="assets/images/landing/carousel_3.png"
+                      class="d-block w-100"
+                      alt="Carousel 3 image"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="text-center mt-3 px-3">
+                  <div class="d-grid gap-2 d-md-block">
+                    <button
+                      type="button"
+                      class="btn btn-success shadow-none"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginModal"
+                    >
+                      Login / Nova conta
+                    </button>
+                  </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                  <div class="col-auto">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="assets/images/landing/facebook.png"
+                        alt="Facebook image"
+                        width="24"
+                        height="24"
+                      />
+                    </a>
+                  </div>
+                  <div class="col-auto">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="assets/images/landing/discord.png"
+                        alt="Facebook image"
+                        width="24"
+                        height="24"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end text-center">
+            <div class="row">
+              <div class="col-12">
+                <img
+                  src="assets/images/landing/download_android_pt.png"
+                  alt="Download pt image"
+                />
+              </div>
+              <div class="col-12">
+                <img
+                  src="assets/images/landing/download_android_en.png"
+                  alt="Download pt image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark text-white d-none d-md-block">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center">
+            <img
+              src="assets/images/landing/charles_studio.png"
+              alt="Charles studio logo image"
+              width="75"
+              class="me-2"
+            />
+            <small
+              >Super Island © <span class="year">2023</span>. Todos os direitos
+              reservados.</small
+            >
+          </div>
+          <div class="col-md-6">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a
+                  href="#"
+                  target="_blank"
+                  class="nav-link px-2 small text-muted"
+                  >Política de privacidade</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  target="_blank"
+                  class="nav-link px-2 small text-muted"
+                  >Termos de serviço</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  target="_blank"
+                  class="nav-link px-2 small text-muted"
+                  >Suporte</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Mobile -->
+    <div class="theme-dark text-white h-100 mobile d-md-none position-relative">
+      <div class="container mt-2">
+        <div class="server">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-globe ms-1"></i>
+            <small class="fw-bold ms-1">Brazil</small>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="hover-white">
+        <div
+          class="position-absolute top-0 end-0 pe-2 pt-2 z-1 d-inline-block max-w-icon"
+        >
+          <div class="p-icon news-icon m-auto"></div>
+          <p class="text-shadow text-truncate text-center">Notícias</p>
+        </div>
+      </a>
+      <a href="#" class="hover-white">
+        <div
+          class="position-absolute bottom-0 end-0 pe-2 pb-2 z-1 d-inline-block max-w-icon"
+        >
+          <div class="p-icon credits-icon m-auto"></div>
+          <p class="text-shadow text-truncate text-center">Créditos</p>
+        </div>
+      </a>
+      <div
+        class="start d-flex justify-content-center align-items-center animate__animated animate__flash animate__infinite animate__slower"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal"
+      >
+        Toque para começar!
+      </div>
+      <img
+        src="assets/images/logo/logo.png"
+        alt="Logo mobile image"
+        width="230"
+        class="logo-mobile"
+      />
+      <footer class="footer mt-auto pt-3 bg-transparent w-100">
+        <div
+          class="container d-flex justify-content-center align-items-center p-3"
+        >
+          <a href="#" target="_blank" rel="noopener noreferrer"
+            ><img
+              src="assets/images/landing/facebook.png"
+              alt="Facebook image"
+              class="me-2"
+          /></a>
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/landing/discord.png" alt="Discord image" />
+          </a>
+        </div>
+        <div class="bg-dark d-flex px-2 justify-content-between">
+          <div class="d-flex align-items-center">
+            <strong>© <span class="year">2023</span> Super Island</strong>
+          </div>
+          <div class="d-flex justify-content-end align-items-center">
+            <strong>v1.0.0</strong>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Login modal -->
+    <div
+      class="modal"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-360 modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body mt-2">
+            <form id="loginForm" novalidate>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="fa-solid fa-at"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control shadow-none"
+                  placeholder="E-mail"
+                  aria-label="E-mail"
+                  aria-describedby="basic-addon1"
+                  id="email"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2"
+                  ><i class="fa-solid fa-lock"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control shadow-none"
+                  placeholder="Senha"
+                  aria-label="Senha"
+                  aria-describedby="basic-addon2"
+                  id="password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mb-3 w-100">
+                Login
+              </button>
+              <button
+                type="button"
+                class="btn btn-success mb-3 w-100"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
+              >
+                Criar uma conta
+              </button>
+              <div class="text-center">
+                <a
+                  href="#forgotPasswordModal"
+                  tabindex="-1"
+                  data-bs-toggle="modal"
+                  >Esqueceu a senha?</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Forgot password modal -->
+    <div
+      class="modal"
+      id="forgotPasswordModal"
+      tabindex="-1"
+      aria-labelledby="forgotPasswordModalLabel"
+      aria-hidden="true"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-360">
+        <div class="modal-content">
+          <div class="modal-body mt-2">
+            <form id="forgotPasswordForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3"
+                  ><i class="fa-solid fa-at"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control shadow-none"
+                  placeholder="E-mail"
+                  aria-label="E-mail"
+                  aria-describedby="basic-addon3"
+                  id="emailRecovery"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mb-3 w-100">
+                Continuar
+              </button>
+              <div class="text-center">
+                <a href="#loginModal" tabindex="-1" data-bs-toggle="modal"
+                  >Voltar</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Register modal -->
+    <div
+      class="modal"
+      id="registerModal"
+      tabindex="-1"
+      aria-labelledby="registerModalLabel"
+      aria-hidden="true"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-360">
+        <div class="modal-content">
+          <div class="modal-body mt-2">
+            <form id="registerForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon4"
+                  ><i class="fa-solid fa-at"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control shadow-none"
+                  placeholder="E-mail"
+                  aria-label="E-mail"
+                  aria-describedby="basic-addon4"
+                  id="emailRegister"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon5"
+                  ><i class="fa-solid fa-lock"></i
+                ></span>
+                <input
+                  type="password"
+                  class="form-control shadow-none"
+                  placeholder="Senha"
+                  aria-label="Senha"
+                  aria-describedby="basic-addon5"
+                  id="passwordRegister"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon6"
+                  ><i class="fa-solid fa-lock"></i
+                ></span>
+                <input
+                  type="password"
+                  class="form-control shadow-none"
+                  placeholder="Repita a senha"
+                  aria-label="Repita a senha"
+                  aria-describedby="basic-addon6"
+                  id="passwordConfirmationRegister"
+                  required
+                />
+              </div>
+              <p class="text-center">
+                Tocando em Jogar, você concorda com nosso
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                  >Termos de serviço</a
+                >
+              </p>
+              <button type="submit" class="btn btn-success mb-3 w-100">
+                Jogar
+              </button>
+              <div class="text-center">
+                <a href="#loginModal" tabindex="-1" data-bs-toggle="modal"
+                  >Voltar</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Toast -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x z-index-1065 pt-4"
+    >
+      <div
+        class="toast hide align-items-center text-white bg-warning border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-delay="4000"
+        id="toast"
+      >
+        <div class="d-flex">
+          <div
+            class="toast-body d-flex justify-content-center align-items-center w-100"
+            id="toast-text"
+          >
+            Hello, world! This is a toast message.
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto shadow-none"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <!-- Loading -->
+    <div class="loading-wrapper" id="loading">
+      <img src="assets/images/icons/loading.gif" alt="Loading image" />
+    </div>
+    <!-- Loader -->
+    <div class="loader-wrapper" id="loader">
+      <div class="loader-content">
+        <img src="assets/images/icons/loading.gif" alt="Loader image" />
+        <p>Carregando dados...</p>
+      </div>
+    </div>
+    <script src="assets/lib/bootstrap@5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/preloadjs/preloadjs.min.js"></script>
+    <script src="assets/js/check.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/index.js"></script>
+  </body>
+</html>
