@@ -29,3 +29,5 @@ function hideToast() {
   const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
   myToast.hide();
 }
+
+const apiURL = 'http://localhost:5000';

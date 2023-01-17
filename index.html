@@ -367,7 +367,7 @@
       <div class="modal-dialog modal-dialog-360 modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-body mt-2">
-            <form id="loginForm" novalidate>
+            <form id="loginForm">
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"
                   ><i class="fa-solid fa-at"></i
@@ -396,7 +396,11 @@
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-primary mb-3 w-100">
+              <button
+                type="submit"
+                class="btn btn-primary mb-3 w-100"
+                id="login"
+              >
                 Login
               </button>
               <button
@@ -575,6 +579,7 @@
     </div>
     <script src="assets/lib/bootstrap@5.2.3/js/bootstrap.bundle.min.js"></script>
     <script src="assets/lib/preloadjs/preloadjs.min.js"></script>
+    <script src="assets/lib/axios/axios.min.js"></script>
     <script src="assets/js/check.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/index.js"></script>

@@ -223,6 +223,24 @@ function abbreviateNumber(number) {
   }).format(number);
 }
 
+const instance = axios.create({
+  baseURL: apiURL,
+  headers: { Authorization: `Bearer ${localStorage.getItem('token') ?? ''}` },
+});
+
+instance.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    if (error.response && error.response.status === 401) {
+      removeSession();
+      return;
+    }
+    return Promise.reject(error);
+  }
+);
+
 function feedNewsBox() {
   const box = document.getElementById('newsFeedBox');
   box.classList.remove('animate__fadeOut');
@@ -313,6 +331,7 @@ function checkLogged() {
 function removeSession() {
   localStorage.removeItem('tabCount');
   localStorage.removeItem('logged');
+  localStorage.removeItem('token');
   window.location.href = 'index.html';
 }
 
@@ -376,10 +395,41 @@ async function getHome() {
   await loaderHTML('home').then(() => {
     draggable();
     tooltip();
-    document.getElementById('minStamina').textContent = abbreviateNumber(4900);
-    document.getElementById('maxStamina').textContent = abbreviateNumber(100);
-    updateTooltip('staminaTooltip', `Carne<br>${numberFormatter(4900)}/100`);
+    loading();
+    instance
+      .get('/user/profile/detail')
+      .then(response => {
+        mountHome(response.data);
+      })
+      .catch(error => {
+        if (error.response) {
+          toast(error.response.data.message, 'error');
+          return;
+        }
+        toast(error.message, 'error');
+      })
+      .finally(() => {
+        hideLoading();
+      });
   });
+}
+
+function mountHome(data) {
+  document.getElementById('user').textContent = data.user ?? data.email;
+  document.getElementById('level').textContent = data.level;
+  document.getElementById('minStamina').textContent = abbreviateNumber(
+    data.stamina
+  );
+  document.getElementById('maxStamina').textContent = abbreviateNumber(100);
+  updateTooltip(
+    'staminaTooltip',
+    `Carne<br>${numberFormatter(data.stamina)}/100`
+  );
+  document.getElementById('belly').textContent = abbreviateNumber(data.belly);
+  document.getElementById('gold').textContent = abbreviateNumber(data.gold);
+  document.getElementById('experience').style.width = `${
+    (data.experience * 100) / 100
+  }%`;
 }
 
 function footerMenu() {

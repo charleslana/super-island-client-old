@@ -48,6 +48,10 @@ function handleComplete() {
   body.classList.remove('overflow-hidden');
 }
 
+const instance = axios.create({
+  baseURL: apiURL,
+});
+
 function handleLogin() {
   const logged = localStorage.getItem('logged');
   if (logged === 'true') {
@@ -56,11 +60,26 @@ function handleLogin() {
   document.getElementById('loginForm').addEventListener('submit', e => {
     e.preventDefault();
     loading();
-    const timeout = setTimeout(() => {
-      clearTimeout(timeout);
-      localStorage.setItem('logged', true);
-      redirectToGame();
-    }, 1000);
+    instance
+      .post('/user/login', {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+      })
+      .then(response => {
+        localStorage.setItem('token', response.data.accessToken);
+        localStorage.setItem('logged', true);
+        redirectToGame();
+      })
+      .catch(error => {
+        if (error.response) {
+          toast(error.response.data.message, 'error');
+          return;
+        }
+        toast(error.message, 'error');
+      })
+      .finally(() => {
+        hideLoading();
+      });
   });
 }
 
@@ -77,10 +96,30 @@ function handleRegister() {
   document.getElementById('registerForm').addEventListener('submit', e => {
     e.preventDefault();
     loading();
-    const timeout = setTimeout(() => {
-      clearTimeout(timeout);
-      hideLoading();
-    }, 1000);
+    instance
+      .post('/user', {
+        email: document.getElementById('emailRegister').value,
+        password: document.getElementById('passwordRegister').value,
+        passwordConfirmation: document.getElementById(
+          'passwordConfirmationRegister'
+        ).value,
+      })
+      .then(() => {
+        document.getElementById('email').value =
+          document.getElementById('emailRegister').value;
+        document.getElementById('password').value =
+          document.getElementById('passwordRegister').value;
+        document.getElementById('login').click();
+      })
+      .catch(error => {
+        hideLoading();
+        if (error.response) {
+          toast(error.response.data.message, 'error');
+          return;
+        }
+        toast(error.message, 'error');
+      })
+      .finally(() => {});
   });
 }
 
