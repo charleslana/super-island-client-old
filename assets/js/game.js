@@ -224,7 +224,7 @@ function abbreviateNumber(number) {
 }
 
 const instance = axios.create({
-  baseURL: apiURL,
+  baseURL: API_URL,
   headers: { Authorization: `Bearer ${localStorage.getItem('token') ?? ''}` },
 });
 

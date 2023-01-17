@@ -30,4 +30,4 @@ function hideToast() {
   myToast.hide();
 }
 
-const apiURL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5000';
