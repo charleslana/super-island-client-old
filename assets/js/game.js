@@ -45,7 +45,7 @@ function load() {
     'assets/images/icons/special_exp.png',
     'assets/images/icons/scroll.png',
     'assets/images/avatars/hero_order.png',
-    'assets/images/background/home_order.jpg',
+    'assets/images/background/home_order.png',
     'assets/images/footer/bag_default.png',
     'assets/images/footer/character_default.png',
     'assets/images/footer/home_default.png',
