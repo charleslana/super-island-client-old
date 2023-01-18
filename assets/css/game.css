@@ -1,5 +1,4 @@
 @import url('../css/common.css');
-@import url('../fonts/icomoon/icomoon.min.css');
 
 * {
   font-family: 'Roboto', sans-serif;
@@ -92,8 +91,8 @@ header .navbar .user-bar .progress-bar {
   }
 }
 
-.add-cash {
-  background-image: url('../images/icons/add_cash.png');
+.add-gem {
+  background-image: url('../images/icons/plus.png');
   background-size: contain;
   width: 23px;
   height: 23px;
@@ -101,7 +100,7 @@ header .navbar .user-bar .progress-bar {
 }
 
 .main-home {
-  background-image: url('../images/background/home_order.png');
+  background-image: url('../images/background/home.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 1312px;
@@ -156,7 +155,7 @@ footer .navbar span {
 }
 
 .world-map {
-  background-image: url('../images/footer/worldmap_default.png');
+  background-image: url('../images/footer/menu.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -164,7 +163,7 @@ footer .navbar span {
 }
 
 .max-w-icon {
-  width: 45px;
+  width: 58px;
 }
 
 .m-t-n-icon {
@@ -172,7 +171,7 @@ footer .navbar span {
 }
 
 .town-map {
-  background-image: url('../images/footer/town_default.png');
+  background-image: url('../images/footer/menu.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -180,7 +179,7 @@ footer .navbar span {
 }
 
 .home-map {
-  background-image: url('../images/footer/home_default.png');
+  background-image: url('../images/footer/home.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -188,7 +187,7 @@ footer .navbar span {
 }
 
 .hero {
-  background-image: url('../images/footer/character_default.png');
+  background-image: url('../images/footer/menu.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -196,7 +195,7 @@ footer .navbar span {
 }
 
 .bag {
-  background-image: url('../images/footer/bag_default.png');
+  background-image: url('../images/footer/menu.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -348,13 +347,6 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-chest-bg {
-  cursor: pointer;
-  position: absolute;
-  left: 236px;
-  top: 298px;
-}
-
 .home-newspaper-bg {
   position: absolute;
   width: 56px;
@@ -497,20 +489,6 @@ main [id] .badge > span {
   pointer-events: none;
 }
 
-.home-npc-1 {
-  position: absolute;
-  width: 80px;
-  height: 58px;
-  margin-top: 400px;
-  left: 480px;
-  cursor: pointer;
-}
-
-.home-npc-1 img {
-  position: absolute;
-  top: 0;
-}
-
 .home-npc-2 {
   width: 100px;
   height: 83px;
@@ -629,77 +607,77 @@ main [id] .badge > span {
 }
 
 .float-menu-hunt {
-  background-image: url('../images/menu/hunting_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-task {
-  background-image: url('../images/menu/tasks_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-rewards {
-  background-image: url('../images/menu/rewards_v2.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-shop {
-  background-image: url('../images/menu/shop_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-wheel {
-  background-image: url('../images/menu/wheel_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-rank {
-  background-image: url('../images/menu/rank_v2.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-challenge {
-  background-image: url('../images/menu/challenge_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-events {
-  background-image: url('../images/menu/events_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-news {
-  background-image: url('../images/menu/news_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-help {
-  background-image: url('../images/menu/help_default.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
 }
 
 .float-menu-walkthrough {
-  background-image: url('../images/menu/walkthrough_default_2.png');
+  background-image: url('../images/menu/menu.png');
   background-size: contain;
   width: 50px;
   height: 50px;
@@ -836,42 +814,42 @@ main [id] .badge > span {
 }
 
 .float-left-menu-mail {
-  background-image: url('../images/left-menu/mail_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
 .float-left-menu-trade {
-  background-image: url('../images/left-menu/trade_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
 .float-left-menu-friends {
-  background-image: url('../images/left-menu/friends_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
 .float-left-menu-guilds {
-  background-image: url('../images/left-menu/guilds_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
 .float-left-menu-achievements {
-  background-image: url('../images/left-menu/achievements_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
 .float-left-menu-index {
-  background-image: url('../images/left-menu/index_default.png');
+  background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
@@ -972,4 +950,18 @@ main [id] .badge > span {
   border-color: transparent;
   background-color: #4d91c9 !important;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%231977b6'/%3e%3c/svg%3e") !important;
+}
+
+.vip-icon {
+  position: absolute;
+  bottom: 0px;
+  right: -10px;
+  background-image: url('../images/icons/vip.png');
+  background-size: contain;
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  line-height: 17px;
 }

@@ -57,6 +57,14 @@ function handleLogin() {
   if (logged === 'true') {
     redirectToGame();
   }
+  if (
+    localStorage.getItem('emailLogin') &&
+    localStorage.getItem('passwordLogin')
+  ) {
+    document.getElementById('email').value = localStorage.getItem('emailLogin');
+    document.getElementById('password').value =
+      localStorage.getItem('passwordLogin');
+  }
   document.getElementById('loginForm').addEventListener('submit', e => {
     e.preventDefault();
     loading();
@@ -68,6 +76,14 @@ function handleLogin() {
       .then(response => {
         localStorage.setItem('token', response.data.accessToken);
         localStorage.setItem('logged', true);
+        localStorage.setItem(
+          'emailLogin',
+          document.getElementById('email').value
+        );
+        localStorage.setItem(
+          'passwordLogin',
+          document.getElementById('password').value
+        );
         redirectToGame();
       })
       .catch(error => {

@@ -15,13 +15,6 @@
     <link
       rel="preload"
       as="font"
-      href="assets/fonts/icomoon/static/icomoon.ttf"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      as="font"
       href="assets/fonts/thaleahfat/static/thaleahfat.woff2"
       type="font/woff2"
       crossorigin="anonymous"
@@ -94,27 +87,21 @@
         </div>
         <div class="container-fluid p-1">
           <div class="d-flex align-items-center" id="userLogged">
-            <img
-              src="assets/images/avatars/hero_order.png"
-              alt="Avatar image"
-              width="41"
-              height="41"
-              class="me-1 rounded-circle"
-            />
+            <div class="position-relative">
+              <img
+                src="assets/images/avatars/hero_order.png"
+                alt="Avatar image"
+                width="41"
+                height="41"
+                class="me-1 rounded-circle"
+              />
+              <div class="vip-icon" id="level">1</div>
+            </div>
             <div class="d-flex flex-column w-65px">
-              <div class="text-truncate">
-                <i class="icon-order align-middle"></i>
-                <span class="premium-nick name" id="user">user</span>
-                <!-- useraaaaaaaaaaa -->
-              </div>
-              <div class="d-flex">
-                <img
-                  src="assets/images/icons/premium.png"
-                  alt="Premium image"
-                  width="15"
-                  height="15"
-                />
-                <span class="ms-1">Nv. <span id="level">3</span></span>
+              <div class="d-flex align-items-center">
+                <span class="text-truncate premium-nick name ms-1" id="user"
+                  >user</span
+                >
               </div>
             </div>
           </div>
@@ -133,10 +120,10 @@
                 aria-valuemax="100"
               >
                 <img
-                  src="assets/images/icons/stamina_2.png"
+                  src="assets/images/icons/meat.png"
                   alt="Stamina image"
-                  width="18"
-                  height="18"
+                  width="23"
+                  height="23"
                 />
               </div>
               <div>
@@ -149,7 +136,7 @@
               class="progress user-bar align-items-center justify-content-between p-1 me-1"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
-              title="Ouro"
+              title="Belly"
             >
               <div
                 class="progress-bar flex-row"
@@ -158,10 +145,10 @@
                 aria-valuemax="100"
               >
                 <img
-                  src="assets/images/icons/money_2.png"
-                  alt="Money image"
-                  width="18"
-                  height="18"
+                  src="assets/images/icons/belly.png"
+                  alt="Belly image"
+                  width="23"
+                  height="23"
                 />
               </div>
               <div id="belly">2017</div>
@@ -170,7 +157,7 @@
               class="progress user-bar align-items-center justify-content-between p-1"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
-              title="Diamante"
+              title="Gema"
             >
               <div
                 class="progress-bar flex-row"
@@ -179,15 +166,15 @@
                 aria-valuemax="100"
               >
                 <img
-                  src="assets/images/icons/diamond.png"
-                  alt="Diamond image"
-                  width="18"
-                  height="18"
+                  src="assets/images/icons/gem.png"
+                  alt="Gem image"
+                  width="23"
+                  height="23"
                 />
               </div>
               <div id="gold">0</div>
             </div>
-            <div class="add-cash"></div>
+            <div class="add-gem"></div>
           </div>
         </div>
       </nav>
@@ -204,15 +191,15 @@
           >
           </span>
         </div>
-        <div class="text">Caçadas</div>
+        <div class="text">Menu 01</div>
       </div>
       <div id="menuFloatTask" class="mb-2">
         <div class="float-menu-task position-relative"></div>
-        <div class="text">Tarefas</div>
+        <div class="text">Menu 02</div>
       </div>
       <div id="menuFloatRewards" class="mb-2">
         <div class="float-menu-rewards position-relative"></div>
-        <div class="text">Prêmios</div>
+        <div class="text">Menu 03</div>
       </div>
     </div>
     <div
@@ -225,15 +212,15 @@
           >
           </span>
         </div>
-        <div class="text">Shop</div>
+        <div class="text">Menu 04</div>
       </div>
       <div id="menuFloatWheel" class="mb-2">
         <div class="float-menu-wheel position-relative"></div>
-        <div class="text text-truncate">Girar Roda</div>
+        <div class="text text-truncate">Menu 05</div>
       </div>
       <div id="menuFloatRank" class="mb-2">
         <div class="float-menu-rank position-relative"></div>
-        <div class="text text-truncate">TOP Rank</div>
+        <div class="text text-truncate">Menu 06</div>
       </div>
     </div>
     <div
@@ -246,11 +233,11 @@
           >
           </span>
         </div>
-        <div class="text text-truncate">Desafios</div>
+        <div class="text text-truncate">Menu 07</div>
       </div>
       <div id="menuFloatEvents" class="mb-2">
         <div class="float-menu-events position-relative"></div>
-        <div class="text text-truncate">Eventos</div>
+        <div class="text text-truncate">Menu 08</div>
       </div>
     </div>
     <div
@@ -263,11 +250,11 @@
           >
           </span>
         </div>
-        <div class="text text-truncate">Notícias</div>
+        <div class="text text-truncate">Menu 09</div>
       </div>
       <div id="menuFloatHelp" class="mb-2">
         <div class="float-menu-help position-relative"></div>
-        <div class="text text-truncate">Wiki</div>
+        <div class="text text-truncate">Menu 10</div>
       </div>
       <div id="menuFloatWalkthrough" class="mb-2">
         <div class="float-menu-walkthrough position-relative">
@@ -276,7 +263,7 @@
           >
           </span>
         </div>
-        <div class="text text-truncate premium-nick">Fortalecer</div>
+        <div class="text text-truncate premium-nick">Menu 11</div>
       </div>
     </div>
     <!-- Menu float toggle -->
@@ -339,42 +326,42 @@
           >
           </span>
         </div>
-        <div class="text text-truncate">Correio</div>
+        <div class="text text-truncate">Menu 01</div>
       </div>
       <div
         class="d-flex flex-column align-items-center me-2"
         id="menuLeftTrade"
       >
         <div class="float-left-menu-trade position-relative"></div>
-        <div class="text text-truncate">Trocas</div>
+        <div class="text text-truncate">Menu 02</div>
       </div>
       <div
         class="d-flex flex-column align-items-center me-2"
         id="menuLeftFriend"
       >
         <div class="float-left-menu-friends position-relative"></div>
-        <div class="text text-truncate">Amigos</div>
+        <div class="text text-truncate">Menu 03</div>
       </div>
       <div
         class="d-flex flex-column align-items-center me-2"
         id="menuLeftGuild"
       >
         <div class="float-left-menu-guilds position-relative"></div>
-        <div class="text text-truncate">Guilda</div>
+        <div class="text text-truncate">Menu 04</div>
       </div>
       <div
         class="d-flex flex-column align-items-center me-2"
         id="menuLeftAchievements"
       >
         <div class="float-left-menu-achievements position-relative"></div>
-        <div class="text text-truncate">Triunfos</div>
+        <div class="text text-truncate">Menu 05</div>
       </div>
       <div
         class="d-flex flex-column align-items-center me-1"
         id="menuLeftIndex"
       >
         <div class="float-left-menu-index position-relative"></div>
-        <div class="text text-truncate">Índice</div>
+        <div class="text text-truncate">Menu 06</div>
       </div>
       <div class="d-flex align-items-center" id="leftMenuBarHide">
         <i class="fa-solid fa-angle-left"></i>
@@ -404,7 +391,7 @@
             <div
               class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
             >
-              <span class="max-w-icon">Mundo</span>
+              <span class="max-w-icon">Menu 01</span>
             </div>
           </div>
           <div class="d-flex flex-column align-items-center" id="townMap">
@@ -417,7 +404,7 @@
             <div
               class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
             >
-              <span class="max-w-icon">Cidade</span>
+              <span class="max-w-icon">Menu 02</span>
             </div>
           </div>
           <div
@@ -446,7 +433,7 @@
             <div
               class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
             >
-              <span class="max-w-icon">Herói</span>
+              <span class="max-w-icon">Menu 04</span>
             </div>
           </div>
           <div class="d-flex flex-column align-items-center" id="bag">
@@ -459,7 +446,7 @@
             <div
               class="d-inline-block max-w-icon text-center text-truncate m-t-n-icon"
             >
-              <span class="max-w-icon">Mochila</span>
+              <span class="max-w-icon">Menu 05</span>
             </div>
           </div>
         </div>
@@ -477,7 +464,7 @@
         class="bonus d-flex flex-column align-items-center justify-content-center position-relative"
         data-bs-toggle="tooltip"
         data-bs-placement="bottom"
-        title="Bônus Diário: EXP +10% (~7H 32M)"
+        title="Bônus Diário: EXP +10% (7H 32M)"
       >
         <img src="assets/images/icons/exp.png" alt="Exp image" height="16" />
         <div class="progress">
