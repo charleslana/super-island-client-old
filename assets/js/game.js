@@ -27,6 +27,7 @@ function load() {
   queue.loadManifest([
     'assets/images/favicon.png',
     'assets/images/icons/loading.gif',
+    'assets/images/icons/button_close.png',
     'assets/images/icons/vip.png',
     'assets/images/icons/meat.png',
     'assets/images/icons/belly.png',
@@ -36,9 +37,10 @@ function load() {
     'assets/images/icons/exp.png',
     'assets/images/icons/quest_progress.png',
     'assets/images/icons/quest_complete.png',
-    'assets/images/avatars/hero_order.png',
+    'assets/images/avatars/01.png',
     'assets/images/background/home.png',
     'assets/images/footer/home.png',
+    'assets/images/footer/crew.png',
     'assets/images/footer/menu.png',
     'assets/images/boats/01.gif',
     // 'assets/images/boats/02.gif',
@@ -55,9 +57,7 @@ function load() {
     // 'assets/images/boats/13.gif',
     'assets/images/menu/reward_bg.png',
     'assets/images/menu/menu.png',
-    'assets/images/npc/01.gif',
-    'assets/images/npc/02.gif',
-    'assets/images/characters/01.gif',
+    'assets/images/npc/01.png',
     'assets/images/left-menu/menu.png',
     'assets/images/icons/settings/option_gathering.png',
     'assets/images/icons/settings/option_eggs.png',
@@ -78,6 +78,10 @@ function load() {
   queue.loadFile({
     id: 'btnClick',
     src: 'assets/sounds/btn_click.mp3',
+  });
+  queue.loadFile({
+    id: 'btnClose',
+    src: 'assets/sounds/btn_close.mp3',
   });
   queue.loadFile({
     id: 'bgmHome',
@@ -259,15 +263,20 @@ function checkBrowserTabs() {
 }
 
 function settings() {
+  const modalSettings = document.getElementById('modalSettings');
   document.getElementById('userLogged').addEventListener('click', () => {
     btnClick();
-    const myModal = new bootstrap.Modal(
-      document.getElementById('modalSettings')
-    );
+    const myModal = new bootstrap.Modal(modalSettings);
     myModal.show();
   });
   document.getElementById('logout').addEventListener('click', () => {
     removeSession();
+  });
+  modalSettings.addEventListener('hidden.bs.modal', () => {
+    btnClose();
+  });
+  document.getElementById('settingsBtnClose').addEventListener('click', () => {
+    btnClose();
   });
   sound();
 }
@@ -375,11 +384,7 @@ async function getHome() {
         mountHome(response.data);
       })
       .catch(error => {
-        if (error.response) {
-          toast(error.response.data.message, 'error');
-          return;
-        }
-        toast(error.message, 'error');
+        handleError(error);
       })
       .finally(() => {
         hideLoading();
@@ -388,7 +393,7 @@ async function getHome() {
 }
 
 function mountHome(data) {
-  document.getElementById('user').textContent = data.user ?? data.email;
+  document.getElementById('user').textContent = data.name ?? data.email;
   document.getElementById('level').textContent = data.level;
   document.getElementById('minStamina').textContent = abbreviateNumber(
     data.stamina
@@ -403,6 +408,36 @@ function mountHome(data) {
   document.getElementById('experience').style.width = `${
     (data.experience * 100) / 100
   }%`;
+  if (data.name === null) {
+    showChangeName();
+  }
+}
+
+function showChangeName() {
+  const myModal = new bootstrap.Modal(
+    document.getElementById('changeNameModal')
+  );
+  myModal.show();
+  document.getElementById('changeNameForm').addEventListener('submit', e => {
+    e.preventDefault();
+    loading();
+    instance
+      .put('/user/change-name', {
+        name: document.getElementById('name').value,
+      })
+      .then(response => {
+        document.getElementById('user').textContent =
+          document.getElementById('name').value;
+        toast(response.data.message, 'success');
+        myModal.hide();
+      })
+      .catch(error => {
+        handleError(error);
+      })
+      .finally(() => {
+        hideLoading();
+      });
+  });
 }
 
 function footerMenu() {
@@ -413,16 +448,16 @@ function footerMenu() {
       getHome();
     }
   });
-  document.getElementById('townMap').addEventListener('click', () => {
-    if (page !== 'town') {
+  document.getElementById('crewMap').addEventListener('click', () => {
+    if (page !== 'crew') {
       btnClick();
-      getTown();
+      getCrew();
     }
   });
 }
 
-async function getTown() {
-  await loaderHTML('town');
+async function getCrew() {
+  await loaderHTML('crew');
 }
 
 function questToggle() {
@@ -462,6 +497,12 @@ function menuLeftToggle() {
 function btnClick() {
   if (isSound()) {
     createjs.Sound.play('btnClick');
+  }
+}
+
+function btnClose() {
+  if (isSound()) {
+    createjs.Sound.play('btnClose');
   }
 }
 

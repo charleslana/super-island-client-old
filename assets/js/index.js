@@ -88,11 +88,7 @@ function handleLogin() {
       })
       .catch(error => {
         hideLoading();
-        if (error.response) {
-          toast(error.response.data.message, 'error');
-          return;
-        }
-        toast(error.message, 'error');
+        handleError(error);
       })
       .finally(() => {});
   });
@@ -128,11 +124,7 @@ function handleRegister() {
       })
       .catch(error => {
         hideLoading();
-        if (error.response) {
-          toast(error.response.data.message, 'error');
-          return;
-        }
-        toast(error.message, 'error');
+        handleError(error);
       })
       .finally(() => {});
   });

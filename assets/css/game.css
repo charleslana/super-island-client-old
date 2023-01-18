@@ -170,8 +170,8 @@ footer .navbar span {
   margin-top: -10px;
 }
 
-.town-map {
-  background-image: url('../images/footer/menu.png');
+.crew-map {
+  background-image: url('../images/footer/crew.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -489,7 +489,7 @@ main [id] .badge > span {
   pointer-events: none;
 }
 
-.home-npc-2 {
+.home-npc-1 {
   width: 100px;
   height: 83px;
   position: absolute;
@@ -498,16 +498,16 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-npc-2 img:not(.quest) {
+.home-npc-1 img:not(.quest) {
   position: absolute;
   top: 0;
 }
 
-.home-npc-2 .quest {
+.home-npc-1 .quest {
   position: absolute;
   margin: auto auto;
-  top: 18px;
-  left: 10px;
+  top: 5px;
+  left: -8px;
 }
 
 .home-user-character {
@@ -964,4 +964,21 @@ main [id] .badge > span {
   color: white;
   font-size: 10px;
   line-height: 17px;
+}
+
+.slide-in {
+  animation: slide-in 3s ease-in-out infinite;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes slide-in {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

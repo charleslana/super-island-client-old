@@ -325,3 +325,22 @@
 .toast.toast-success {
   background-color: #129f5a !important;
 }
+
+.modal-body h1 {
+  font-size: 14px;
+}
+
+.modal-content .btn-close {
+  background: url('../images/icons/button_close.png');
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  z-index: 1;
+  right: -10px;
+  top: -20px;
+}
+
+.modal-dialog-scrollable .modal-content {
+  overflow: unset;
+}
