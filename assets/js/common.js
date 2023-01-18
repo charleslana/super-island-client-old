@@ -30,4 +30,4 @@ function hideToast() {
   myToast.hide();
 }
 
-const API_URL = 'http://192.168.0.102:5000'; //http://192.168.0.102:5000 | https://super-island-server.onrender.com
+const API_URL = 'https://super-island-server.onrender.com'; //http://192.168.0.102:5000 | https://super-island-server.onrender.com
