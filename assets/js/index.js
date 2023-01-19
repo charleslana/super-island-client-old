@@ -37,7 +37,7 @@ function load() {
     'assets/images/app_logo.png',
     'assets/images/favicon.png',
     'assets/images/icons/credits_default.png',
-    'assets/images/icons/news_default_2.png',
+    'assets/images/icons/news.png',
   ]);
   queue.addEventListener('complete', handleComplete);
 }

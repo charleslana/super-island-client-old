@@ -156,9 +156,5 @@ a:hover {
 }
 
 .news-icon {
-  background-image: url('../images/icons/news_default_2.png');
-}
-
-.credits-icon {
-  background-image: url('../images/icons/credits_default.png');
+  background-image: url('../images/icons/news.png');
 }
