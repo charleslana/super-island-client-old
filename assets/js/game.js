@@ -378,6 +378,7 @@ async function loaderHTML(page) {
 
 async function getHome() {
   await loaderHTML('home').then(() => {
+    showMenu();
     draggable();
     tooltip();
     loading();
@@ -385,7 +386,6 @@ async function getHome() {
       .get('/user/profile/detail')
       .then(response => {
         mountHome(response.data);
-        showMenu();
       })
       .catch(error => {
         handleError(error);
