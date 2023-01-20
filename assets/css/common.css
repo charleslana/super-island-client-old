@@ -337,10 +337,14 @@
   height: 32px;
   opacity: 1;
   z-index: 1;
-  right: -10px;
-  top: -20px;
+  right: -8px;
+  top: -8px;
 }
 
 .modal-dialog-scrollable .modal-content {
   overflow: unset;
+}
+
+.modal-body li {
+  font-size: 13px;
 }

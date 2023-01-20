@@ -71,6 +71,8 @@ function load() {
     'assets/images/icons/settings/option_global.png',
     'assets/images/icons/settings/option_sound.png',
     'assets/images/icons/settings/option_language.png',
+    'assets/images/characters/1.png',
+    'assets/images/characters/2.png',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -364,6 +366,7 @@ async function loaderHTML(page) {
       const root = document.getElementById('root');
       root.innerHTML = response.data;
       root.dataset.page = page;
+      changeMenuFooterActive(`${page}Map`);
     })
     .catch(function (error) {
       toast(error.message, 'error');
@@ -382,6 +385,7 @@ async function getHome() {
       .get('/user/profile/detail')
       .then(response => {
         mountHome(response.data);
+        showMenu();
       })
       .catch(error => {
         handleError(error);
@@ -441,15 +445,14 @@ function showChangeName() {
 }
 
 function footerMenu() {
-  const page = document.getElementById('root').getAttribute('data-page');
   document.getElementById('homeMap').addEventListener('click', () => {
-    if (page !== 'home') {
+    if (document.getElementById('root').getAttribute('data-page') !== 'home') {
       btnClick();
       getHome();
     }
   });
   document.getElementById('crewMap').addEventListener('click', () => {
-    if (page !== 'crew') {
+    if (document.getElementById('root').getAttribute('data-page') !== 'crew') {
       btnClick();
       getCrew();
     }
@@ -457,7 +460,69 @@ function footerMenu() {
 }
 
 async function getCrew() {
-  await loaderHTML('crew');
+  await loaderHTML('crew').then(() => {
+    hideMenu();
+    findAllCrew();
+    document.getElementById('help').addEventListener('click', () => {
+      const helpModal = document.getElementById('helpModal');
+      const myModal = new bootstrap.Modal(helpModal);
+      myModal.show();
+      btnClick();
+      helpModal.addEventListener('hidden.bs.modal', () => {
+        btnClose();
+      });
+      document.getElementById('close').addEventListener('click', () => {
+        myModal.hide();
+        btnClose();
+      });
+    });
+  });
+}
+
+function findAllCrew() {
+  loading();
+  instance
+    .get('/user-character')
+    .then(response => {
+      mountCrew(response.data);
+    })
+    .catch(error => {
+      handleError(error);
+    })
+    .finally(() => {
+      hideLoading();
+    });
+}
+
+function mountCrew(data) {
+  document.getElementById(
+    'countCharacters'
+  ).textContent = `(${data.length}/100)`;
+  if (data.length === 0) {
+    document.getElementById('empty').classList.remove('d-none');
+    return
+  }
+  data.forEach(d => {
+    document.getElementById('characters').insertAdjacentHTML(
+      'beforeend',
+      `
+      <div class="col text-start separate-column">
+        <div class="card item-card d-flex align-items-center" role="button">
+          <div class="card-body">
+            <img
+              src="assets/images/characters/${d.character.image}.png"
+              alt="Character image"
+              height="103"
+              class="slide-in"
+            />
+            <div class="position-absolute bottom-0 start-0 ms-1 rarity">${d.character.rarity}</div>
+          </div>
+        </div>
+        <h6 class="text-truncate mt-1">${d.character.name}</h6>
+      </div>
+      `
+    );
+  });
 }
 
 function questToggle() {
@@ -510,4 +575,40 @@ function bgmHome() {
   if (isSound()) {
     createjs.Sound.play('bgmHome', { loop: -1 });
   }
+}
+
+function hideMenu() {
+  const leftMenu = document.querySelectorAll('.float-menu-left');
+  leftMenu.forEach(lm => {
+    lm.classList.add('d-none');
+  });
+  const rightMenu = document.querySelectorAll('.float-menu-right');
+  rightMenu.forEach(rm => {
+    rm.classList.add('d-none');
+  });
+  document.querySelector('.bonus-box').classList.add('d-none');
+  document.getElementById('leftMenuBarShow').classList.add('d-none');
+  document.getElementById('floatMenuHide').classList.add('d-none');
+}
+
+function showMenu() {
+  const leftMenu = document.querySelectorAll('.float-menu-left');
+  leftMenu.forEach(lm => {
+    lm.classList.remove('d-none');
+  });
+  const rightMenu = document.querySelectorAll('.float-menu-right');
+  rightMenu.forEach(rm => {
+    rm.classList.remove('d-none');
+  });
+  document.querySelector('.bonus-box').classList.remove('d-none');
+  document.getElementById('leftMenuBarShow').classList.remove('d-none');
+  document.getElementById('floatMenuHide').classList.remove('d-none');
+}
+
+function changeMenuFooterActive(id) {
+  const actives = document.querySelectorAll('#footer .active');
+  actives.forEach(active => {
+    active.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
 }

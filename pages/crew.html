@@ -1,0 +1,44 @@
+<nav class="navbar navbar-light bg-light navbar-dialog">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1 m-auto">Tripulação</span>
+    <div class="d-flex align-items-end" role="button" id="help">
+      <i class="fa-solid fa-question fa-2x"></i>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="characters position-relative">
+    <h6 class="p-3">Personagens <span id="countCharacters">(0/100)</span></h6>
+    <div class="row row-cols-auto mb-3" id="characters"></div>
+    <div class="empty d-none" id="empty">
+      <i class="fa-solid fa-folder-open fa-8x"></i>
+    </div>
+  </div>
+</div>
+<!-- Help Modal -->
+<div
+  class="modal"
+  id="helpModal"
+  tabindex="-1"
+  aria-labelledby="helpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-360 modal-dialog-centered">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="btn-close position-absolute shadow-none"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        id="close"
+      ></button>
+      <div class="modal-body">
+        <h6 class="fw-bold">Ajuda</h6>
+        <ol>
+          <li>Em breve</li>
+          <li>Em breve</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
