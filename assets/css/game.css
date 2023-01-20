@@ -186,8 +186,8 @@ footer .navbar span {
   height: 44px;
 }
 
-.hero {
-  background-image: url('../images/footer/menu.png');
+.inventory {
+  background-image: url('../images/footer/inventory.png');
   background-repeat: no-repeat;
   background-size: contain;
   width: 44px;
@@ -993,7 +993,8 @@ main [id] .badge > span {
   margin-bottom: 10px;
 }
 
-[data-page='crew'] {
+[data-page='crew'],
+[data-page='inventory'] {
   background-color: #2a2f34;
 }
 
@@ -1015,17 +1016,17 @@ main [id] .badge > span {
   border: 10px solid transparent;
 }
 
-.item-card {
+.item-character-card {
   background-color: rgba(142, 144, 146, 0.2) !important;
   width: 93px;
 }
 
-.item-card .rarity {
+.separate-column .rarity {
   font-size: 10px;
   font-weight: 600;
 }
 
-.separate-column h6 {
+.item-character-card-detail {
   font-size: 11px;
   font-weight: 500;
   text-align: center;
@@ -1037,4 +1038,16 @@ main [id] .badge > span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.item-card {
+  background-color: rgba(142, 144, 146, 0.2) !important;
+  width: 107px;
+}
+
+.item-card-detail {
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  width: 107px;
 }

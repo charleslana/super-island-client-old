@@ -41,6 +41,7 @@ function load() {
     'assets/images/background/home.png',
     'assets/images/footer/home.png',
     'assets/images/footer/crew.png',
+    'assets/images/footer/inventory.png',
     'assets/images/footer/menu.png',
     'assets/images/boats/01.gif',
     // 'assets/images/boats/02.gif',
@@ -73,6 +74,8 @@ function load() {
     'assets/images/icons/settings/option_language.png',
     'assets/images/characters/1.png',
     'assets/images/characters/2.png',
+    'assets/images/items/1.png',
+    'assets/images/items/2.png',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -457,25 +460,21 @@ function footerMenu() {
       getCrew();
     }
   });
+  document.getElementById('inventoryMap').addEventListener('click', () => {
+    if (
+      document.getElementById('root').getAttribute('data-page') !== 'inventory'
+    ) {
+      btnClick();
+      getInventory();
+    }
+  });
 }
 
 async function getCrew() {
   await loaderHTML('crew').then(() => {
     hideMenu();
     findAllCrew();
-    document.getElementById('help').addEventListener('click', () => {
-      const helpModal = document.getElementById('helpModal');
-      const myModal = new bootstrap.Modal(helpModal);
-      myModal.show();
-      btnClick();
-      helpModal.addEventListener('hidden.bs.modal', () => {
-        btnClose();
-      });
-      document.getElementById('close').addEventListener('click', () => {
-        myModal.hide();
-        btnClose();
-      });
-    });
+    helpModal();
   });
 }
 
@@ -495,19 +494,17 @@ function findAllCrew() {
 }
 
 function mountCrew(data) {
-  document.getElementById(
-    'countCharacters'
-  ).textContent = `(${data.length}/100)`;
+  document.getElementById('count').textContent = `(${data.length}/100)`;
   if (data.length === 0) {
     document.getElementById('empty').classList.remove('d-none');
-    return
+    return;
   }
   data.forEach(d => {
     document.getElementById('characters').insertAdjacentHTML(
       'beforeend',
       `
       <div class="col text-start separate-column">
-        <div class="card item-card d-flex align-items-center" role="button">
+        <div class="card item-character-card d-flex align-items-center" role="button">
           <div class="card-body">
             <img
               src="assets/images/characters/${d.character.image}.png"
@@ -518,7 +515,74 @@ function mountCrew(data) {
             <div class="position-absolute bottom-0 start-0 ms-1 rarity">${d.character.rarity}</div>
           </div>
         </div>
-        <h6 class="text-truncate mt-1">${d.character.name}</h6>
+        <h6 class="text-truncate mt-1 item-character-card-detail">${d.character.name}</h6>
+      </div>
+      `
+    );
+  });
+}
+
+function helpModal() {
+  document.getElementById('help').addEventListener('click', () => {
+    const helpModal = document.getElementById('helpModal');
+    const myModal = new bootstrap.Modal(helpModal);
+    myModal.show();
+    btnClick();
+    helpModal.addEventListener('hidden.bs.modal', () => {
+      btnClose();
+    });
+    document.getElementById('close').addEventListener('click', () => {
+      myModal.hide();
+      btnClose();
+    });
+  });
+}
+
+async function getInventory() {
+  await loaderHTML('inventory').then(() => {
+    hideMenu();
+    findAllInventory();
+    helpModal();
+  });
+}
+
+function findAllInventory() {
+  loading();
+  instance
+    .get('/user-item')
+    .then(response => {
+      mountInventory(response.data);
+    })
+    .catch(error => {
+      handleError(error);
+    })
+    .finally(() => {
+      hideLoading();
+    });
+}
+
+function mountInventory(data) {
+  document.getElementById('count').textContent = `(${data.length}/100)`;
+  if (data.length === 0) {
+    document.getElementById('empty').classList.remove('d-none');
+    return;
+  }
+  data.forEach(d => {
+    document.getElementById('items').insertAdjacentHTML(
+      'beforeend',
+      `
+      <div class="col text-start separate-column">
+        <div class="card item-card d-flex align-items-center" role="button">
+          <div class="card-body">
+            <img
+              src="assets/images/items/${d.item.image}.png"
+              alt="Item image"
+              height="72"
+            />
+            <div class="position-absolute bottom-0 start-0 ms-1 rarity">${d.item.rarity}</div>
+          </div>
+        </div>
+        <h6 class="text-truncate mt-1 item-card-detail">${d.item.name}</h6>
       </div>
       `
     );
