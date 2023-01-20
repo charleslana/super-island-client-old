@@ -503,7 +503,7 @@ function mountCrew(data) {
     document.getElementById('characters').insertAdjacentHTML(
       'beforeend',
       `
-      <div class="col text-start separate-column">
+      <div class="col-auto text-start separate-column d-flex flex-column align-items-center">
         <div class="card item-character-card d-flex align-items-center" role="button">
           <div class="card-body">
             <img
@@ -571,7 +571,7 @@ function mountInventory(data) {
     document.getElementById('items').insertAdjacentHTML(
       'beforeend',
       `
-      <div class="col text-start separate-column">
+      <div class="col-auto text-start separate-column d-flex flex-column align-items-center">
         <div class="card item-card d-flex align-items-center" role="button">
           <div class="card-body">
             <img
