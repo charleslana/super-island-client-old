@@ -411,7 +411,7 @@ function mountHome(data) {
     `Carne<br>${numberFormatter(data.stamina)}/100`
   );
   document.getElementById('belly').textContent = abbreviateNumber(data.belly);
-  document.getElementById('gold').textContent = abbreviateNumber(data.gold);
+  document.getElementById('gem').textContent = abbreviateNumber(data.gem);
   document.getElementById('experience').style.width = `${
     (data.experience * 100) / 100
   }%`;
