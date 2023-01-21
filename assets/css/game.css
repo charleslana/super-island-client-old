@@ -338,7 +338,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-warehouse-bg {
+.home-shop-bg {
   position: absolute;
   width: 168px;
   height: 160px;
@@ -994,8 +994,10 @@ main [id] .badge > span {
 }
 
 [data-page='crew'],
-[data-page='inventory'] {
+[data-page='inventory'],
+[data-page='shop'] {
   background-color: #2a2f34;
+  height: calc(100vh);
 }
 
 .characters {
@@ -1050,4 +1052,51 @@ main [id] .badge > span {
   font-weight: 500;
   text-align: center;
   width: 107px;
+}
+
+.shop-items img:first-child {
+  object-fit: cover;
+  object-position: left bottom;
+}
+
+.custom-nav .nav {
+  border-bottom: none;
+  --bs-nav-link-padding-x: 0;
+  --bs-nav-link-padding-y: 0.9rem;
+}
+
+.custom-nav .nav-link {
+  font-size: 13px;
+  color: #a5a6a8;
+  border-radius: 0;
+  font-weight: 700;
+  border: none;
+}
+
+.custom-nav .nav-tabs li {
+  width: 25%;
+  background-color: #202429;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-nav .nav-tabs li:first-child button,
+.custom-nav .nav-tabs li:first-child {
+  border-radius: 6px 0px 0px 0px;
+}
+
+.custom-nav .nav-tabs li:last-child button,
+.custom-nav .nav-tabs li:last-child {
+  border-radius: 0px 6px 0px 0px;
+}
+
+.custom-nav .nav-link.active {
+  background-color: rgb(36, 41, 45);
+  color: #a5a6a8;
+}
+
+.custom-nav .tab-content {
+  font-size: 12px;
+  font-weight: 500;
+  background-color: rgb(36, 41, 45);
 }

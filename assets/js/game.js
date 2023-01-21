@@ -18,6 +18,7 @@ addEventListener('DOMContentLoaded', async () => {
   footerMenu();
   questToggle();
   menuLeftToggle();
+  mapMenu();
 });
 
 function load() {
@@ -76,6 +77,7 @@ function load() {
     'assets/images/characters/2.png',
     'assets/images/items/1.png',
     'assets/images/items/2.png',
+    'assets/images/banner/shop.jpg',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -361,7 +363,7 @@ function floatMenu() {
   }
 }
 
-async function loaderHTML(page) {
+async function loaderHTML(page, hasFooter = true) {
   loading();
   await axios
     .get(`pages/${page}.html`, { responseType: 'text' })
@@ -369,7 +371,9 @@ async function loaderHTML(page) {
       const root = document.getElementById('root');
       root.innerHTML = response.data;
       root.dataset.page = page;
-      changeMenuFooterActive(`${page}Map`);
+      if (hasFooter) {
+        changeMenuFooterActive(`${page}Map`);
+      }
     })
     .catch(function (error) {
       toast(error.message, 'error');
@@ -384,6 +388,7 @@ async function getHome() {
     showMenu();
     draggable();
     tooltip();
+    mapMenu();
     loading();
     instance
       .get('/user/profile/detail')
@@ -410,6 +415,8 @@ function mountHome(data) {
     'staminaTooltip',
     `Carne<br>${numberFormatter(data.stamina)}/100`
   );
+  updateTooltip('bellyTooltip', `Berries<br>${numberFormatter(+data.belly)}`);
+  updateTooltip('gemTooltip', `Gema<br>${numberFormatter(+data.gem)}`);
   document.getElementById('belly').textContent = abbreviateNumber(data.belly);
   document.getElementById('gem').textContent = abbreviateNumber(data.gem);
   document.getElementById('experience').style.width = `${
@@ -675,4 +682,45 @@ function changeMenuFooterActive(id) {
     active.classList.remove('active');
   });
   document.getElementById(id).classList.add('active');
+}
+
+function mapMenu() {
+  document.getElementById('shop').addEventListener('click', () => {
+    btnClick();
+    getShop();
+  });
+}
+
+async function getShop() {
+  await loaderHTML('shop', false).then(() => {
+    hideMenu();
+    hideFooter();
+    back();
+    loading();
+    instance
+      .get('/shop')
+      .then(response => {
+        mountShop(response.data);
+      })
+      .catch(error => {
+        handleError(error);
+      })
+      .finally(() => {
+        hideLoading();
+      });
+  });
+}
+
+function hideFooter() {
+  document.getElementById('footer').style.display = 'none';
+}
+
+function mountShop(data) {}
+
+function back() {
+  document.getElementById('back').addEventListener('click', () => {
+    btnClose();
+    getHome();
+    document.getElementById('footer').style.removeProperty('display');
+  });
 }

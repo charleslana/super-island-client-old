@@ -1,0 +1,113 @@
+<nav class="navbar navbar-light bg-light navbar-dialog">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center" role="button" id="back">
+      <i class="fa-solid fa-chevron-left fa-2x"></i>
+    </div>
+    <span class="navbar-brand mb-0 h1 m-auto">Loja de itens</span>
+  </div>
+</nav>
+<div class="container">
+  <div class="shop-items custom-nav position-relative">
+    <img
+      src="assets/images/banner/shop.jpg"
+      class="card-img-top rounded mb-3"
+      alt="Banner image"
+      height="160"
+    />
+    <ul class="nav nav-tabs" id="navTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active w-100"
+          id="firstTab"
+          data-bs-toggle="tab"
+          data-bs-target="#first"
+          type="button"
+          role="tab"
+          aria-controls="first"
+          aria-selected="true"
+        >
+          Armas
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link w-100"
+          id="secondTab"
+          data-bs-toggle="tab"
+          data-bs-target="#second"
+          type="button"
+          role="tab"
+          aria-controls="second"
+          aria-selected="false"
+        >
+          Escudos
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link w-100"
+          id="thirdTab"
+          data-bs-toggle="tab"
+          data-bs-target="#third"
+          type="button"
+          role="tab"
+          aria-controls="third"
+          aria-selected="false"
+        >
+          Armaduras
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link w-100"
+          id="fourthTab"
+          data-bs-toggle="tab"
+          data-bs-target="#fourth"
+          type="button"
+          role="tab"
+          aria-controls="fourth"
+          aria-selected="false"
+        >
+          Acessórios
+        </button>
+      </li>
+    </ul>
+    <div class="container tab-content pt-4 pb-4" id="navTabContent">
+      <div
+        class="tab-pane show active"
+        id="first"
+        role="tabpanel"
+        aria-labelledby="firstTab"
+      >
+        Armas
+      </div>
+      <div
+        class="tab-pane"
+        id="second"
+        role="tabpanel"
+        aria-labelledby="secondTab"
+      >
+        Escudos
+      </div>
+      <div
+        class="tab-pane"
+        id="third"
+        role="tabpanel"
+        aria-labelledby="thirdTab"
+      >
+        Armaduras
+      </div>
+      <div
+        class="tab-pane"
+        id="fourth"
+        role="tabpanel"
+        aria-labelledby="fourthTab"
+      >
+        Acessórios
+      </div>
+    </div>
+    <div class="empty d-none" id="empty">
+      <i class="fa-solid fa-folder-open fa-8x"></i>
+    </div>
+  </div>
+</div>
