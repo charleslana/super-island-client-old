@@ -136,6 +136,24 @@ main {
   font-size: 13px;
 }
 
+.tooltip-custom {
+  color: #a5a6a8;
+  font-weight: 500;
+}
+
+.tooltip-custom small {
+  font-size: 11px;
+}
+
+.tooltip-custom span {
+  font-size: 12px;
+}
+
+.tooltip-custom .container {
+  background-color: rgba(61, 67, 73, 0.6);
+  border-radius: 6px;
+}
+
 footer .navbar {
   background-color: #202429 !important;
   min-height: 54px;
@@ -265,6 +283,10 @@ footer .navbar [id] > div > span {
   color: #e65b54;
 }
 
+.color-red-3 {
+  color: #da4453;
+}
+
 .color-blue-2 {
   color: #658fd6;
 }
@@ -275,6 +297,10 @@ footer .navbar [id] > div > span {
 
 .color-orange {
   color: #f4a835;
+}
+
+.color-green {
+  color: #42a674;
 }
 
 .color-green-3 {
@@ -329,7 +355,7 @@ main [id] .badge > span {
   padding: 4px !important;
 }
 
-.home-bed-bg {
+.home-menu01-bg {
   position: absolute;
   width: 175px;
   height: 145px;
@@ -347,7 +373,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-newspaper-bg {
+.home-menu03-bg {
   position: absolute;
   width: 56px;
   height: 67px;
@@ -356,7 +382,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-craft-bg {
+.home-menu04-bg {
   position: absolute;
   width: 218px;
   height: 150px;
@@ -365,7 +391,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-harvest-bg {
+.home-menu05-bg {
   position: absolute;
   width: 196px;
   height: 92px;
@@ -374,7 +400,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-farm-bg {
+.home-menu06-bg {
   position: absolute;
   width: 171px;
   height: 146px;
@@ -383,7 +409,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-familiar-bg {
+.home-menu07-bg {
   position: absolute;
   width: 177px;
   height: 147px;
@@ -392,7 +418,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-cave-bg {
+.home-menu08-bg {
   position: absolute;
   width: 255px;
   height: 213px;
@@ -401,7 +427,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-forest-bg {
+.home-menu09-bg {
   position: absolute;
   width: 377px;
   height: 122px;
@@ -410,7 +436,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-harbor-bg {
+.home-menu10-bg {
   position: absolute;
   width: 181px;
   height: 133px;
@@ -419,7 +445,7 @@ main [id] .badge > span {
   cursor: pointer;
 }
 
-.home-harbor-bg img {
+.home-menu10-bg img {
   position: absolute;
 }
 
@@ -813,42 +839,42 @@ main [id] .badge > span {
   padding: 4px;
 }
 
-.float-left-menu-mail {
+.float-left-menu-01 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
-.float-left-menu-trade {
+.float-left-menu-02 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
-.float-left-menu-friends {
+.float-left-menu-03 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
-.float-left-menu-guilds {
+.float-left-menu-04 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
-.float-left-menu-achievements {
+.float-left-menu-05 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
   height: 40px;
 }
 
-.float-left-menu-index {
+.float-left-menu-06 {
   background-image: url('../images/left-menu/menu.png');
   background-size: contain;
   width: 40px;
@@ -994,10 +1020,14 @@ main [id] .badge > span {
 }
 
 [data-page='crew'],
-[data-page='inventory'],
+[data-page='inventory'] {
+  background-color: #2a2f34;
+  height: calc(83vh);
+}
+
 [data-page='shop'] {
   background-color: #2a2f34;
-  height: calc(100vh);
+  height: calc(94vh);
 }
 
 .characters {
@@ -1057,6 +1087,30 @@ main [id] .badge > span {
 .shop-items img:first-child {
   object-fit: cover;
   object-position: left bottom;
+}
+
+.shop-items .item {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background-color: rgba(142, 144, 146, 0.2);
+}
+
+.shop-items .item i {
+  font-size: 10px;
+  top: 2px !important;
+  left: 2px !important;
+}
+
+.shop-items .btn-success {
+  padding: 0px 2px 0px 2px;
+  margin: auto;
+}
+
+.item-border {
+  border-bottom: 1px solid rgba(52, 56, 61, 0.5);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .custom-nav .nav {
