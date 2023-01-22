@@ -1022,7 +1022,6 @@ main [id] .badge > span {
 [data-page='crew'],
 [data-page='inventory'] {
   background-color: #2a2f34;
-  height: calc(83vh);
 }
 
 [data-page='shop'] {
