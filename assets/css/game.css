@@ -601,7 +601,8 @@ main [id] .badge > span {
 }
 
 .float-menu-left .text,
-.float-menu-right .text {
+.float-menu-right .text,
+.chapter .text {
   font-size: 13px;
   color: white;
   font-weight: 600;
@@ -609,16 +610,21 @@ main [id] .badge > span {
   text-align: center;
   line-height: 11px;
   width: 60px;
+  display: block !important;
 }
 
 .float-menu-left span,
-.float-menu-right span {
+.float-menu-right span,
+.float-left span,
+.float-right span {
   padding: 4px !important;
   top: 5px !important;
 }
 
 .float-menu-left [id],
-.float-menu-right [id] {
+.float-menu-right [id],
+.float-left [id],
+.float-right [id] {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -628,7 +634,8 @@ main [id] .badge > span {
 }
 
 .float-menu-left [id]:hover > div:first-child,
-.float-menu-right [id]:hover > div:first-child {
+.float-menu-right [id]:hover > div:first-child,
+.float-left [id]:hover > div:first-child {
   transform: scale(1.1);
 }
 
@@ -1219,4 +1226,19 @@ main [id] .badge > span {
   height: calc(var(--vh, 1vh) * 100 - 114px);
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.float-left {
+  width: 60px;
+  position: fixed;
+  top: 64px;
+  left: 5px;
+  z-index: 2;
+}
+
+.float-right {
+  position: fixed;
+  top: 64px;
+  right: 5px;
+  z-index: 2;
 }

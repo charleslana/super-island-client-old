@@ -89,6 +89,13 @@ function load() {
     'assets/images/chapters/4.png',
     'assets/images/chapters/5.png',
     'assets/images/chapters/6.png',
+    'assets/images/rarity/a.png',
+    'assets/images/rarity/b.png',
+    'assets/images/rarity/c.png',
+    'assets/images/rarity/d.png',
+    'assets/images/rarity/s.png',
+    'assets/images/rarity/ss.png',
+    'assets/images/rarity/sss.png',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -151,9 +158,22 @@ function draggable() {
       target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
+      localStorage.setItem('mapX', x);
+      localStorage.setItem('mapY', y);
     }
   }
   window.dragMoveListener = dragMoveListener;
+}
+
+function dragMove() {
+  if (window.innerWidth < 1312) {
+    const x = localStorage.getItem('mapX');
+    const y = localStorage.getItem('mapY');
+    const target = document.querySelector('.draggable');
+    target.style.transform = `translate(${x}px, ${y}px)`;
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
 }
 
 function tooltip() {
@@ -627,10 +647,18 @@ function mountCrew(data) {
               height="103"
               class="slide-in"
             />
-            <div class="position-absolute bottom-0 start-0 ms-1 rarity">${d.character.rarity}</div>
+            <div class="position-absolute bottom-0 start-0 ms-1 rarity">
+              <img
+                src="assets/images/rarity/${d.character.rarity.toLowerCase()}.png"
+                alt="Rarity image"
+                height="15"
+              />
+            </div>
           </div>
         </div>
-        <h6 class="text-truncate mt-1 item-character-card-detail">${d.character.name}</h6>
+        <h6 class="text-truncate mt-1 item-character-card-detail">${
+          d.character.name
+        }</h6>
       </div>
       `
     );
@@ -694,7 +722,13 @@ function mountInventory(data) {
               alt="Item image"
               height="72"
             />
-            <div class="position-absolute bottom-0 start-0 ms-1 rarity">${d.item.rarity}</div>
+            <div class="position-absolute bottom-0 start-0 ms-1 rarity">
+              <img
+                src="assets/images/rarity/${d.item.rarity.toLowerCase()}.png"
+                alt="Rarity image"
+                height="15"
+              />
+            </div>
           </div>
         </div>
         <h6 class="text-truncate mt-1 item-card-detail">${d.item.name}</h6>
@@ -892,9 +926,11 @@ function mountShop(data) {
 }
 
 function back() {
-  document.getElementById('back').addEventListener('click', () => {
+  document.getElementById('back').addEventListener('click', async () => {
     btnClose();
-    getHome();
+    await getHome().then(() => {
+      dragMove();
+    });
     document.getElementById('footer').style.removeProperty('display');
   });
 }
