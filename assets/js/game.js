@@ -18,6 +18,7 @@ addEventListener('DOMContentLoaded', async () => {
   footerMenu();
   questToggle();
   menuLeftToggle();
+  viewHeight();
 });
 
 function load() {
@@ -37,11 +38,16 @@ function load() {
     'assets/images/icons/exp.png',
     'assets/images/icons/quest_progress.png',
     'assets/images/icons/quest_complete.png',
+    'assets/images/icons/arrow_left.png',
+    'assets/images/icons/ship.png',
+    'assets/images/icons/lock.png',
     'assets/images/avatars/01.png',
     'assets/images/background/home.png',
+    'assets/images/background/chapter.jpg',
     'assets/images/footer/home.png',
     'assets/images/footer/crew.png',
     'assets/images/footer/inventory.png',
+    'assets/images/footer/chapter.png',
     'assets/images/footer/menu.png',
     'assets/images/boats/01.gif',
     // 'assets/images/boats/02.gif',
@@ -77,6 +83,12 @@ function load() {
     'assets/images/items/1.png',
     'assets/images/items/2.png',
     'assets/images/banner/shop.jpg',
+    'assets/images/chapters/1.png',
+    'assets/images/chapters/2.png',
+    'assets/images/chapters/3.png',
+    'assets/images/chapters/4.png',
+    'assets/images/chapters/5.png',
+    'assets/images/chapters/6.png',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -474,6 +486,103 @@ function footerMenu() {
       getInventory();
     }
   });
+  document.getElementById('chapterMap').addEventListener('click', () => {
+    if (
+      document.getElementById('root').getAttribute('data-page') !== 'chapter'
+    ) {
+      btnClick();
+      getChapter();
+    }
+  });
+}
+
+async function getChapter() {
+  await loaderHTML('chapter').then(() => {
+    hideMenu();
+    findAllChapter();
+  });
+}
+
+function findAllChapter() {
+  loading();
+  instance
+    .get('/chapter')
+    .then(response => {
+      mountChapter(response.data);
+    })
+    .catch(error => {
+      handleError(error);
+    })
+    .finally(() => {
+      hideLoading();
+    });
+}
+
+function mountChapter(data) {
+  data.reverse().forEach((d, index) => {
+    if (index < data.length - 1) {
+      document.getElementById('chapter').insertAdjacentHTML(
+        'beforeend',
+        `
+      <div id="chapter-${d.id}">
+        <div class="d-flex flex-column align-items-center grayscale" role="button">
+          <div class="position-relative">
+            <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
+            <img
+              src="assets/images/icons/lock.png"
+              alt="Lock image"
+              height="55"
+              class="position-absolute bottom-0 start-50 translate-middle-x"
+            />
+          </div>
+          <div class="mt-2">
+            <div class="card">
+              <div class="card-body flex-column">
+                <h5 class="card-title">${d.name}</h5>
+                <p class="card-text color-blue-2">Nível recomendado: ${d.level}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      `
+      );
+      return;
+    }
+    document.getElementById('chapter').insertAdjacentHTML(
+      'beforeend',
+      `
+    <div id="chapter-${d.id}">
+      <div class="d-flex flex-column align-items-center" role="button">
+        <div class="position-relative">
+          <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
+          <img
+            src="assets/images/icons/ship.png"
+            alt="Ship image"
+            height="55"
+            class="position-absolute bottom-0 start-50 floating"
+          />
+        </div>
+        <div class="mt-2">
+          <div class="card">
+            <div class="card-body flex-column">
+              <h5 class="card-title">${d.name}</h5>
+              <p class="card-text color-blue-2">Nível recomendado: ${d.level}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
+    );
+  });
+  const interval = setInterval(() => {
+    document.getElementById('worldScroll').scrollTo({
+      top: document.getElementById('chapter-1').offsetTop - 50,
+      behavior: 'smooth',
+    });
+    clearInterval(interval);
+  }, 200);
 }
 
 async function getCrew() {
@@ -605,6 +714,7 @@ function questToggle() {
       questToggleIcon.removeAttribute('quest-toggle-icon');
       questBox.classList.remove('animate__slideOutLeft');
       questBox.classList.add('animate__slideInLeft');
+      localStorage.setItem('questBox', 'show');
       return;
     }
     questToggleIcon.classList.remove('fa-angle-left');
@@ -612,7 +722,11 @@ function questToggle() {
     questToggleIcon.setAttribute('quest-toggle-icon', 'hide');
     questBox.classList.remove('animate__slideInLeft');
     questBox.classList.add('animate__slideOutLeft');
+    localStorage.setItem('questBox', 'hide');
   });
+  if (localStorage.getItem('questBox') === 'hide') {
+    document.getElementById('questToggle').click();
+  }
 }
 
 function menuLeftToggle() {
@@ -782,5 +896,14 @@ function back() {
     btnClose();
     getHome();
     document.getElementById('footer').style.removeProperty('display');
+  });
+}
+
+function viewHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  window.addEventListener('resize', () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   });
 }
