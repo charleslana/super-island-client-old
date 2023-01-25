@@ -77,3 +77,9 @@ function showChangeName() {
       });
   });
 }
+
+function stopHomeBgm() {
+  if (homeInstance !== undefined) {
+    homeInstance.stop();
+  }
+}

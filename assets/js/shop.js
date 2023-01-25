@@ -1,7 +1,7 @@
 function clickShop() {
-  document.getElementById('shop').addEventListener('click', () => {
+  document.getElementById('shop').addEventListener('click', async () => {
     btnClick();
-    getShop();
+    await getShop();
   });
 }
 
@@ -11,7 +11,7 @@ async function getShop() {
     hideFooter();
     backHome();
     loading();
-    homeInstance.stop();
+    stopHomeBgm();
     bgmShop();
     instance
       .get('/shop')
@@ -31,7 +31,7 @@ async function getShop() {
       btnClose();
       await getHome().then(() => {
         dragMove();
-        shopInstance.stop();
+        stopShopBgm();
         bgmHome();
       });
       showFooter();
@@ -100,4 +100,10 @@ function mountShop(data) {
     );
   });
   tooltip();
+}
+
+function stopShopBgm() {
+  if (shopInstance !== undefined) {
+    shopInstance.stop();
+  }
 }
