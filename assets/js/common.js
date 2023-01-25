@@ -45,4 +45,11 @@ function handleError(error) {
   toast(error.message, 'error');
 }
 
+function includeJs(jsFilePath) {
+  const js = document.createElement('script');
+  js.type = 'text/javascript';
+  js.src = jsFilePath;
+  document.body.appendChild(js);
+}
+
 const API_URL = 'https://super-island-server.onrender.com'; //http://192.168.0.102:5000 | https://super-island-server.onrender.com

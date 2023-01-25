@@ -3,6 +3,15 @@
 //   e.returnValue = '';
 // });
 
+let homeInstance;
+let shopInstance;
+
+includeJs('assets/js/home.js');
+includeJs('assets/js/crew.js');
+includeJs('assets/js/inventory.js');
+includeJs('assets/js/shop.js');
+includeJs('assets/js/chapter.js');
+
 addEventListener('DOMContentLoaded', async () => {
   load();
   // document.getElementById('loader').style.display = 'none';
@@ -14,8 +23,6 @@ addEventListener('DOMContentLoaded', async () => {
   checkInternet();
   settings();
   floatMenu();
-  await getHome();
-  footerMenu();
   questToggle();
   menuLeftToggle();
   viewHeight();
@@ -112,6 +119,10 @@ function load() {
     id: 'bgmHome',
     src: 'assets/sounds/home.mp3',
   });
+  queue.loadFile({
+    id: 'bgmShop',
+    src: 'assets/sounds/shop.mp3',
+  });
   queue.addEventListener('complete', handleComplete);
 }
 
@@ -135,7 +146,7 @@ function draggable() {
     listeners: {
       move: dragMoveListener,
       end(event) {
-        var textEl = event.target.querySelector('p');
+        const textEl = event.target.querySelector('p');
         textEl &&
           (textEl.textContent =
             'moved a distance of ' +
@@ -151,9 +162,9 @@ function draggable() {
 
   function dragMoveListener(event) {
     hideTooltip();
-    var target = event.target;
-    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    const target = event.target;
+    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
     if (window.innerWidth < 1312) {
       target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
       target.setAttribute('data-x', x);
@@ -362,6 +373,7 @@ function floatMenu() {
   const menuRightList = document.querySelectorAll('.float-menu-right');
   const menuStorage = localStorage.getItem('menuToggle');
   menuHide.addEventListener('click', () => {
+    btnClose();
     menuLeftList.forEach(m => {
       m.classList.remove('animate__slideInDown');
       m.classList.add('animate__slideOutUp');
@@ -376,6 +388,7 @@ function floatMenu() {
     localStorage.setItem('menuToggle', 'hide');
   });
   menuShow.addEventListener('click', () => {
+    btnClick();
     menuLeftList.forEach(m => {
       m.classList.remove('animate__slideOutUp');
       m.classList.add('animate__slideInDown');
@@ -414,257 +427,6 @@ async function loaderHTML(page, hasFooter = true) {
     });
 }
 
-async function getHome() {
-  await loaderHTML('home').then(() => {
-    showMenu();
-    draggable();
-    tooltip();
-    mapMenu();
-    loading();
-    instance
-      .get('/user/profile/detail')
-      .then(response => {
-        mountHome(response.data);
-      })
-      .catch(error => {
-        handleError(error);
-      })
-      .finally(() => {
-        hideLoading();
-      });
-  });
-}
-
-function mountHome(data) {
-  document.getElementById('user').textContent = data.name ?? data.email;
-  document.getElementById('level').textContent = data.level;
-  document.getElementById('minStamina').textContent = abbreviateNumber(
-    data.stamina
-  );
-  document.getElementById('maxStamina').textContent = abbreviateNumber(100);
-  updateTooltip(
-    'staminaTooltip',
-    `Carne<br>${numberFormatter(data.stamina)}/100`
-  );
-  updateTooltip('bellyTooltip', `Berries<br>${numberFormatter(+data.belly)}`);
-  updateTooltip('gemTooltip', `Gema<br>${numberFormatter(+data.gem)}`);
-  document.getElementById('belly').textContent = abbreviateNumber(data.belly);
-  document.getElementById('gem').textContent = abbreviateNumber(data.gem);
-  document.getElementById('experience').style.width = `${
-    (data.experience * 100) / 100
-  }%`;
-  if (data.name === null) {
-    showChangeName();
-  }
-}
-
-function showChangeName() {
-  const myModal = new bootstrap.Modal(
-    document.getElementById('changeNameModal')
-  );
-  myModal.show();
-  document.getElementById('changeNameForm').addEventListener('submit', e => {
-    e.preventDefault();
-    loading();
-    instance
-      .put('/user/change-name', {
-        name: document.getElementById('name').value,
-      })
-      .then(response => {
-        document.getElementById('user').textContent =
-          document.getElementById('name').value;
-        toast(response.data.message, 'success');
-        myModal.hide();
-      })
-      .catch(error => {
-        handleError(error);
-      })
-      .finally(() => {
-        hideLoading();
-      });
-  });
-}
-
-function footerMenu() {
-  document.getElementById('homeMap').addEventListener('click', () => {
-    if (document.getElementById('root').getAttribute('data-page') !== 'home') {
-      btnClick();
-      getHome();
-    }
-  });
-  document.getElementById('crewMap').addEventListener('click', () => {
-    if (document.getElementById('root').getAttribute('data-page') !== 'crew') {
-      btnClick();
-      getCrew();
-    }
-  });
-  document.getElementById('inventoryMap').addEventListener('click', () => {
-    if (
-      document.getElementById('root').getAttribute('data-page') !== 'inventory'
-    ) {
-      btnClick();
-      getInventory();
-    }
-  });
-  document.getElementById('chapterMap').addEventListener('click', () => {
-    if (
-      document.getElementById('root').getAttribute('data-page') !== 'chapter'
-    ) {
-      btnClick();
-      getChapter();
-    }
-  });
-}
-
-async function getChapter() {
-  await loaderHTML('chapter').then(() => {
-    hideMenu();
-    findAllChapter();
-  });
-}
-
-function findAllChapter() {
-  loading();
-  instance
-    .get('/chapter')
-    .then(response => {
-      mountChapter(response.data);
-    })
-    .catch(error => {
-      handleError(error);
-    })
-    .finally(() => {
-      hideLoading();
-    });
-}
-
-function mountChapter(data) {
-  data.reverse().forEach((d, index) => {
-    if (index < data.length - 1) {
-      document.getElementById('chapter').insertAdjacentHTML(
-        'beforeend',
-        `
-      <div id="chapter-${d.id}">
-        <div class="d-flex flex-column align-items-center grayscale" role="button">
-          <div class="position-relative">
-            <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
-            <img
-              src="assets/images/icons/lock.png"
-              alt="Lock image"
-              height="55"
-              class="position-absolute bottom-0 start-50 translate-middle-x"
-            />
-          </div>
-          <div class="mt-2">
-            <div class="card">
-              <div class="card-body flex-column">
-                <h5 class="card-title">${d.name}</h5>
-                <p class="card-text color-blue-2">Nível recomendado: ${d.level}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      `
-      );
-      return;
-    }
-    document.getElementById('chapter').insertAdjacentHTML(
-      'beforeend',
-      `
-    <div id="chapter-${d.id}">
-      <div class="d-flex flex-column align-items-center" role="button">
-        <div class="position-relative">
-          <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
-          <img
-            src="assets/images/icons/ship.png"
-            alt="Ship image"
-            height="55"
-            class="position-absolute bottom-0 start-50 floating"
-          />
-        </div>
-        <div class="mt-2">
-          <div class="card">
-            <div class="card-body flex-column">
-              <h5 class="card-title">${d.name}</h5>
-              <p class="card-text color-blue-2">Nível recomendado: ${d.level}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    `
-    );
-  });
-  const interval = setInterval(() => {
-    document.getElementById('worldScroll').scrollTo({
-      top: document.getElementById('chapter-1').offsetTop - 50,
-      behavior: 'smooth',
-    });
-    clearInterval(interval);
-  }, 200);
-}
-
-async function getCrew() {
-  await loaderHTML('crew').then(() => {
-    hideMenu();
-    findAllCrew();
-    helpModal();
-  });
-}
-
-function findAllCrew() {
-  loading();
-  instance
-    .get('/user-character')
-    .then(response => {
-      mountCrew(response.data);
-    })
-    .catch(error => {
-      handleError(error);
-    })
-    .finally(() => {
-      hideLoading();
-    });
-}
-
-function mountCrew(data) {
-  document.getElementById('count').textContent = `(${data.length}/100)`;
-  if (data.length === 0) {
-    document.getElementById('empty').classList.remove('d-none');
-    return;
-  }
-  data.forEach(d => {
-    document.getElementById('characters').insertAdjacentHTML(
-      'beforeend',
-      `
-      <div class="col-auto text-start separate-column d-flex flex-column align-items-center">
-        <div class="card item-character-card d-flex align-items-center" role="button">
-          <div class="card-body">
-            <img
-              src="assets/images/characters/${d.character.image}.png"
-              alt="Character image"
-              height="103"
-              class="slide-in"
-            />
-            <div class="position-absolute bottom-0 start-0 ms-1 rarity">
-              <img
-                src="assets/images/rarity/${d.character.rarity.toLowerCase()}.png"
-                alt="Rarity image"
-                height="15"
-              />
-            </div>
-          </div>
-        </div>
-        <h6 class="text-truncate mt-1 item-character-card-detail">${
-          d.character.name
-        }</h6>
-      </div>
-      `
-    );
-  });
-}
-
 function helpModal() {
   document.getElementById('help').addEventListener('click', () => {
     const helpModal = document.getElementById('helpModal');
@@ -681,86 +443,43 @@ function helpModal() {
   });
 }
 
-async function getInventory() {
-  await loaderHTML('inventory').then(() => {
-    hideMenu();
-    findAllInventory();
-    helpModal();
-  });
-}
-
-function findAllInventory() {
-  loading();
-  instance
-    .get('/user-item')
-    .then(response => {
-      mountInventory(response.data);
-    })
-    .catch(error => {
-      handleError(error);
-    })
-    .finally(() => {
-      hideLoading();
-    });
-}
-
-function mountInventory(data) {
-  document.getElementById('count').textContent = `(${data.length}/100)`;
-  if (data.length === 0) {
-    document.getElementById('empty').classList.remove('d-none');
-    return;
-  }
-  data.forEach(d => {
-    document.getElementById('items').insertAdjacentHTML(
-      'beforeend',
-      `
-      <div class="col-auto text-start separate-column d-flex flex-column align-items-center">
-        <div class="card item-card d-flex align-items-center" role="button">
-          <div class="card-body">
-            <img
-              src="assets/images/items/${d.item.image}.png"
-              alt="Item image"
-              height="72"
-            />
-            <div class="position-absolute bottom-0 start-0 ms-1 rarity">
-              <img
-                src="assets/images/rarity/${d.item.rarity.toLowerCase()}.png"
-                alt="Rarity image"
-                height="15"
-              />
-            </div>
-          </div>
-        </div>
-        <h6 class="text-truncate mt-1 item-card-detail">${d.item.name}</h6>
-      </div>
-      `
-    );
-  });
-}
-
 function questToggle() {
-  document.getElementById('questToggle').addEventListener('click', () => {
-    const questBox = document.getElementById('questBox');
+  const questToggle = document.getElementById('questToggle');
+  questToggle.addEventListener('click', () => {
     const questToggleIcon = document.getElementById('questToggleIcon');
     if (questToggleIcon.getAttribute('quest-toggle-icon') === 'hide') {
-      questToggleIcon.classList.remove('fa-angle-right');
-      questToggleIcon.classList.add('fa-angle-left');
-      questToggleIcon.removeAttribute('quest-toggle-icon');
-      questBox.classList.remove('animate__slideOutLeft');
-      questBox.classList.add('animate__slideInLeft');
-      localStorage.setItem('questBox', 'show');
+      btnClick();
+      showQuestToggle();
       return;
     }
-    questToggleIcon.classList.remove('fa-angle-left');
-    questToggleIcon.classList.add('fa-angle-right');
-    questToggleIcon.setAttribute('quest-toggle-icon', 'hide');
-    questBox.classList.remove('animate__slideInLeft');
-    questBox.classList.add('animate__slideOutLeft');
-    localStorage.setItem('questBox', 'hide');
+    btnClose();
+    hideQuestToggle();
   });
   if (localStorage.getItem('questBox') === 'hide') {
-    document.getElementById('questToggle').click();
+    hideQuestToggle();
   }
+}
+
+function showQuestToggle() {
+  const questBox = document.getElementById('questBox');
+  const questToggleIcon = document.getElementById('questToggleIcon');
+  questToggleIcon.classList.remove('fa-angle-right');
+  questToggleIcon.classList.add('fa-angle-left');
+  questToggleIcon.removeAttribute('quest-toggle-icon');
+  questBox.classList.remove('animate__slideOutLeft');
+  questBox.classList.add('animate__slideInLeft');
+  localStorage.setItem('questBox', 'show');
+}
+
+function hideQuestToggle() {
+  const questBox = document.getElementById('questBox');
+  const questToggleIcon = document.getElementById('questToggleIcon');
+  questToggleIcon.classList.remove('fa-angle-left');
+  questToggleIcon.classList.add('fa-angle-right');
+  questToggleIcon.setAttribute('quest-toggle-icon', 'hide');
+  questBox.classList.remove('animate__slideInLeft');
+  questBox.classList.add('animate__slideOutLeft');
+  localStorage.setItem('questBox', 'hide');
 }
 
 function menuLeftToggle() {
@@ -768,10 +487,12 @@ function menuLeftToggle() {
   const hide = document.getElementById('leftMenuBarHide');
   const menu = document.getElementById('menuLeftExpandedBar');
   show.addEventListener('click', () => {
+    btnClick();
     menu.classList.remove('animate__slideOutLeft');
     menu.classList.add('animate__slideInLeft');
   });
   hide.addEventListener('click', () => {
+    btnClose();
     menu.classList.remove('animate__slideInLeft');
     menu.classList.add('animate__slideOutLeft');
   });
@@ -791,7 +512,13 @@ function btnClose() {
 
 function bgmHome() {
   if (isSound()) {
-    createjs.Sound.play('bgmHome', { loop: -1 });
+    homeInstance = createjs.Sound.play('bgmHome', { loop: -1 });
+  }
+}
+
+function bgmShop() {
+  if (isSound()) {
+    shopInstance = createjs.Sound.play('bgmShop', { loop: -1 });
   }
 }
 
@@ -807,6 +534,7 @@ function hideMenu() {
   document.querySelector('.bonus-box').classList.add('d-none');
   document.getElementById('leftMenuBarShow').classList.add('d-none');
   document.getElementById('floatMenuHide').classList.add('d-none');
+  document.getElementById('floatMenuShow').classList.add('d-none');
 }
 
 function showMenu() {
@@ -821,6 +549,7 @@ function showMenu() {
   document.querySelector('.bonus-box').classList.remove('d-none');
   document.getElementById('leftMenuBarShow').classList.remove('d-none');
   document.getElementById('floatMenuHide').classList.remove('d-none');
+  document.getElementById('floatMenuShow').classList.remove('d-none');
 }
 
 function changeMenuFooterActive(id) {
@@ -831,108 +560,12 @@ function changeMenuFooterActive(id) {
   document.getElementById(id).classList.add('active');
 }
 
-function mapMenu() {
-  document.getElementById('shop').addEventListener('click', () => {
-    btnClick();
-    getShop();
-  });
-}
-
-async function getShop() {
-  await loaderHTML('shop', false).then(() => {
-    hideMenu();
-    hideFooter();
-    back();
-    loading();
-    instance
-      .get('/shop')
-      .then(response => {
-        mountShop(response.data);
-      })
-      .catch(error => {
-        handleError(error);
-      })
-      .finally(() => {
-        hideLoading();
-      });
-  });
-}
-
 function hideFooter() {
   document.getElementById('footer').style.display = 'none';
 }
 
-function mountShop(data) {
-  data.forEach(d => {
-    document.getElementById('first').insertAdjacentHTML(
-      'beforeend',
-      `
-      <div class="d-flex justify-content-between align-items-center item-border container">
-        <div
-          class="d-flex align-items-center"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title="<div class='tooltip-custom'>${d.item.name}<br><small>${
-        d.item.rarity
-      }</small><br><img src='assets/images/items/${
-        d.item.image
-      }.png' alt='Item image' height='32'><br><span>Nível requerido: <span class='color-green'>${
-        d.userLevel
-      }</span></span><div class='container'>Status<br><div class='color-blue-3'>Ataque físico: +1</div></div></div>"
-        >
-          <div
-            class="item d-flex align-items-center justify-content-center me-2 position-relative"
-          >
-            <img src="assets/images/items/${
-              d.item.image
-            }.png" alt="Item image" height="32" />
-            <i
-              class="fa-solid fa-link color-red-3 position-absolute top-0 start-0"
-            ></i>
-          </div>
-          <div class="d-flex flex-column">
-            <div>${d.item.name}</div>
-            <div class="d-flex">
-              <div class="me-2">
-                <img
-                  src="assets/images/icons/belly.png"
-                  alt="Belly image"
-                  width="16"
-                />
-                ${numberFormatter(+d.belly)}
-              </div>
-              <div>
-                <img src="assets/images/icons/gem.png" alt="Gem image" width="16" />
-                ${numberFormatter(+d.gem)}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <button
-            type="button"
-            class="btn btn-success shadow-none"
-            data-bs-toggle="modal"
-            data-bs-target="#confirmModal"
-          >
-            Comprar
-          </button>
-        </div>
-    </div>
-    `
-    );
-  });
-  tooltip();
-}
-
-function back() {
-  document.getElementById('back').addEventListener('click', async () => {
-    btnClose();
-    await getHome().then(() => {
-      dragMove();
-    });
-    document.getElementById('footer').style.removeProperty('display');
-  });
+function showFooter() {
+  document.getElementById('footer').style.removeProperty('display');
 }
 
 function viewHeight() {
