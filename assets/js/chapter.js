@@ -5,6 +5,8 @@ document.getElementById('chapterMap').addEventListener('click', () => {
   }
 });
 
+// document.getElementById('chapterMap').click(); //remove here
+
 async function getChapter() {
   await loaderHTML('chapter').then(() => {
     hideMenu();
@@ -34,7 +36,7 @@ function mountChapter(data) {
         'beforeend',
         `
       <div id="chapter-${d.id}">
-        <div class="d-flex flex-column align-items-center grayscale" role="button">
+        <div class="d-flex flex-column align-items-center grayscale">
           <div class="position-relative">
             <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
             <img
@@ -62,7 +64,7 @@ function mountChapter(data) {
       'beforeend',
       `
     <div id="chapter-${d.id}">
-      <div class="d-flex flex-column align-items-center" role="button">
+      <div class="d-flex flex-column align-items-center" role="button" onclick="getPhase(${d.id})">
         <div class="position-relative">
           <img src="assets/images/chapters/${d.image}.png" alt="Chapter image" width="154" />
           <img
@@ -92,4 +94,68 @@ function mountChapter(data) {
     });
     clearInterval(interval);
   }, 200);
+}
+
+function getPhase(id) {
+  loading();
+  instance
+    .get(`/phase/chapter/${id}`)
+    .then(response => {
+      showPhaseModal(response.data);
+    })
+    .catch(error => {
+      handleError(error);
+    })
+    .finally(() => {
+      hideLoading();
+    });
+}
+
+function showPhaseModal(data) {
+  mountPhase(data);
+  const modal = document.getElementById('phaseModal');
+  const myModal = new bootstrap.Modal(modal);
+  myModal.show();
+  btnClick();
+  modal.addEventListener('hidden.bs.modal', () => {
+    btnClose();
+  });
+  document.getElementById('close').addEventListener('click', () => {
+    myModal.hide();
+    btnClose();
+  });
+}
+
+function mountPhase(data) {
+  document.getElementById('titleChapter').textContent = data[0].chapter.name;
+  const phase = document.getElementById('phase');
+  phase.replaceChildren();
+  data.forEach((d, index) => {
+    phase.insertAdjacentHTML(
+      'beforeend',
+      `<div class="d-flex position-relative card-phase mb-2" role="button">
+        <img
+          src="assets/images/battle/${d.image}.jpg"
+          alt="Phase image"
+          width="100"
+          height="56"
+          class="me-2"
+        />
+        <span
+          class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger d-flex justify-content-center"
+          >${index + 1}</span
+        >
+        <div class="font-12 d-flex justify-content-center flex-column">
+          <p class="font-600 font-12 text-uppercase m-0">${d.name}</p>
+          <div>
+            <i class="fa-solid fa-star color-orange"></i>
+            <i class="fa-solid fa-star color-orange"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+        </div>
+      </div>
+      `
+    );
+  });
+  tooltip();
 }

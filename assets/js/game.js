@@ -6,15 +6,15 @@
 let homeInstance;
 let shopInstance;
 
+includeJs('assets/js/shop.js');
 includeJs('assets/js/home.js');
 includeJs('assets/js/crew.js');
 includeJs('assets/js/inventory.js');
-includeJs('assets/js/shop.js');
 includeJs('assets/js/chapter.js');
 
 addEventListener('DOMContentLoaded', async () => {
   load();
-  // document.getElementById('loader').style.display = 'none';
+  // document.getElementById('loader').style.display = 'none'; //remove here
   checkLogged();
   draggable();
   tooltip();
@@ -73,22 +73,25 @@ function load() {
     'assets/images/menu/menu.png',
     'assets/images/npc/01.png',
     'assets/images/left-menu/menu.png',
-    'assets/images/icons/settings/option_gathering.png',
-    'assets/images/icons/settings/option_eggs.png',
-    'assets/images/icons/settings/option_raid.png',
-    'assets/images/icons/settings/option_pm.png',
-    'assets/images/icons/settings/option_friends.png',
-    'assets/images/icons/settings/option_expedition.png',
-    'assets/images/icons/settings/option_auto_sleep.png',
-    'assets/images/icons/settings/option_auto_repeat.png',
-    'assets/images/icons/settings/option_party.png',
-    'assets/images/icons/settings/option_global.png',
-    'assets/images/icons/settings/option_sound.png',
     'assets/images/icons/settings/option_language.png',
+    'assets/images/icons/settings/option_sound.png',
+    'assets/images/icons/settings/option_sound_effect.png',
+    // 'assets/images/icons/settings/option_gathering.png',
+    // 'assets/images/icons/settings/option_eggs.png',
+    // 'assets/images/icons/settings/option_raid.png',
+    // 'assets/images/icons/settings/option_pm.png',
+    // 'assets/images/icons/settings/option_friends.png',
+    // 'assets/images/icons/settings/option_expedition.png',
+    // 'assets/images/icons/settings/option_auto_sleep.png',
+    // 'assets/images/icons/settings/option_auto_repeat.png',
+    // 'assets/images/icons/settings/option_party.png',
+    // 'assets/images/icons/settings/option_global.png',
     'assets/images/characters/1.png',
     'assets/images/characters/2.png',
     'assets/images/items/1.png',
     'assets/images/items/2.png',
+    'assets/images/items/3.png',
+    'assets/images/items/4.png',
     'assets/images/banner/shop.jpg',
     'assets/images/chapters/1.png',
     'assets/images/chapters/2.png',
@@ -103,6 +106,7 @@ function load() {
     'assets/images/rarity/s.png',
     'assets/images/rarity/ss.png',
     'assets/images/rarity/sss.png',
+    'assets/images/battle/1.jpg',
   ]);
   //sound
   createjs.Sound.alternateExtensions = ['mp3'];
@@ -334,11 +338,15 @@ function isSound() {
   return JSON.parse(localStorage.getItem('sound') ?? true);
 }
 
+function isSoundEffect() {
+  return JSON.parse(localStorage.getItem('soundEffect') ?? true);
+}
+
 function sound() {
   const switchSound = document.getElementById('switchSound');
   switchSound.addEventListener('click', () => {
     if (switchSound.checked) {
-      createjs.Sound.play('btnClick');
+      btnClick();
       localStorage.setItem('sound', 'true');
       return;
     }
@@ -346,7 +354,19 @@ function sound() {
     createjs.Sound.stop();
   });
   if (isSound()) {
-    switchSound.click();
+    switchSound.checked = true;
+  }
+  const switchSoundEffect = document.getElementById('switchSoundEffect');
+  switchSoundEffect.addEventListener('click', () => {
+    if (switchSoundEffect.checked) {
+      createjs.Sound.play('btnClick');
+      localStorage.setItem('soundEffect', 'true');
+      return;
+    }
+    localStorage.setItem('soundEffect', 'false');
+  });
+  if (isSoundEffect()) {
+    switchSoundEffect.checked = true;
   }
 }
 
@@ -499,13 +519,13 @@ function menuLeftToggle() {
 }
 
 function btnClick() {
-  if (isSound()) {
+  if (isSoundEffect()) {
     createjs.Sound.play('btnClick');
   }
 }
 
 function btnClose() {
-  if (isSound()) {
+  if (isSoundEffect()) {
     createjs.Sound.play('btnClose');
   }
 }
@@ -518,7 +538,7 @@ function bgmHome() {
 
 function bgmShop() {
   if (isSound()) {
-    shopInstance = createjs.Sound.play('bgmShop', { loop: -1 });
+    shopInstance = createjs.Sound.play('bgmShop', { loop: -1, delay: 300 });
   }
 }
 

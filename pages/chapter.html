@@ -1,6 +1,6 @@
 <div class="chapter">
   <div class="world-scroll" id="worldScroll">
-    <div class="container d-flex flex-column mt-3" id="chapter"></div>
+    <div class="container d-flex flex-column my-3" id="chapter"></div>
   </div>
   <div class="float-left">
     <div id="menu01" class="mb-2">
@@ -40,6 +40,149 @@
         </span>
       </div>
       <div class="text">Menu 04</div>
+    </div>
+  </div>
+</div>
+
+<!-- Phase Modal -->
+<div
+  class="modal"
+  id="phaseModal"
+  tabindex="-1"
+  aria-labelledby="phaseModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="btn-close position-absolute shadow-none"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        id="close"
+      ></button>
+      <div class="modal-body">
+        <h6 class="fw-bold text-center pb-2" id="titleChapter">
+          Nome do capítulo
+        </h6>
+        <div class="d-flex justify-content-around align-items-center my-2">
+          <div>
+            <div class="card card-dark">
+              <div class="card-body font-12 p-1">
+                <i class="fa-solid fa-star color-orange"></i> 18/36
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="card card-item"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="
+            <div class=tooltip-custom>
+              Name of item<br />
+              <img src='assets/images/items/3.png' alt='Item image' height='32'/><br />
+              <div class='card card-item'>
+                <div class='card-body p-2'>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+              </div>
+            </div>
+              "
+            >
+              <div class="card-body p-2 font-11">
+                <img
+                  src="assets/images/items/3.png"
+                  alt="Item image"
+                  height="32"
+                  class="animate__animated animate__infinite animate__pulse"
+                />
+                <i
+                  class="fa-solid fa-link color-red-3 position-absolute top-0 start-0"
+                ></i>
+                <div class="position-absolute bottom-0 end-0">1</div>
+                <div class="position-absolute star-reward">
+                  <i class="fa-solid fa-star color-orange"></i> 12
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="card card-item"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="
+            <div class=tooltip-custom>
+              Name of item<br />
+              <img src='assets/images/items/3.png' alt='Item image' height='32'/><br />
+              <div class='card card-item'>
+                <div class='card-body p-2'>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+              </div>
+            </div>
+              "
+            >
+              <div class="card-body p-2 font-11">
+                <img
+                  src="assets/images/items/3.png"
+                  alt="Item image"
+                  height="32"
+                />
+                <i
+                  class="fa-solid fa-link color-red-3 position-absolute top-0 start-0"
+                ></i>
+                <div class="position-absolute bottom-0 end-0">1</div>
+                <div class="position-absolute star-reward">
+                  <i class="fa-solid fa-star color-orange"></i> 24
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="card card-item"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="
+            <div class=tooltip-custom>
+              Name of item<br />
+              <img src='assets/images/items/4.png' alt='Item image' height='32'/><br />
+              <div class='card card-item'>
+                <div class='card-body p-2'>
+                  Gema
+                </div>
+              </div>
+            </div>
+              "
+            >
+              <div class="card-body p-2 font-11">
+                <img
+                  src="assets/images/items/4.png"
+                  alt="Item image"
+                  height="32"
+                />
+                <div class="position-absolute bottom-0 end-0">1</div>
+                <div class="position-absolute star-reward">
+                  <i class="fa-solid fa-star color-orange"></i> 36
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="progress progress-reward mb-5">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 44%"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div id="phase"></div>
+      </div>
     </div>
   </div>
 </div>

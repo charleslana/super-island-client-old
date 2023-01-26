@@ -1,7 +1,7 @@
 function clickShop() {
-  document.getElementById('shop').addEventListener('click', async () => {
+  document.getElementById('shop').addEventListener('click', () => {
     btnClick();
-    await getShop();
+    getShop();
   });
 }
 
@@ -49,11 +49,15 @@ function mountShop(data) {
           class="d-flex align-items-center"
           data-bs-toggle="tooltip"
           data-bs-placement="top"
-          title="<div class='tooltip-custom'>${d.item.name}<br><small>${
-        d.item.rarity
-      }</small><br><img src='assets/images/items/${
-        d.item.image
-      }.png' alt='Item image' height='32'><br><span>Nível requerido: <span class='color-green'>${
+          title="<div class='tooltip-custom'>${d.item.name}<br>
+          <img
+            src='assets/images/rarity/${d.item.rarity.toLowerCase()}.png'
+            alt='Rarity image'
+            height='15'
+          />
+          <br><img src='assets/images/items/${
+            d.item.image
+          }.png' alt='Item image' height='32'><br><span>Nível requerido: <span class='color-green'>${
         d.userLevel
       }</span></span><div class='container'>Status<br><div class='color-blue-3'>Ataque físico: +1</div></div></div>"
         >
