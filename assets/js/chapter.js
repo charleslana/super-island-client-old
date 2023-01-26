@@ -157,5 +157,34 @@ function mountPhase(data) {
       `
     );
   });
+  phase.insertAdjacentHTML(
+    'beforeend',
+    `
+  <div class="d-flex position-relative card-phase mb-2 grayscale">
+    <img
+      src="assets/images/battle/1.jpg"
+      alt="Phase image"
+      width="100"
+      height="56"
+      class="me-2"
+    />
+    <span
+      class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger d-flex justify-content-center"
+      >3</span
+    >
+    <div class="font-12 d-flex justify-content-center flex-column">
+      <p class="font-600 font-12 text-uppercase m-0">Fase 3</p>
+      <div>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </div>
+      <div class="position-absolute top-50 end-0 translate-middle">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+    </div>
+  </div>
+  `
+  );
   tooltip();
 }
