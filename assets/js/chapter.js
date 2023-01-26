@@ -97,6 +97,7 @@ function mountChapter(data) {
 }
 
 function getPhase(id) {
+  btnClick();
   loading();
   instance
     .get(`/phase/chapter/${id}`)
@@ -116,7 +117,6 @@ function showPhaseModal(data) {
   const modal = document.getElementById('phaseModal');
   const myModal = new bootstrap.Modal(modal);
   myModal.show();
-  btnClick();
   modal.addEventListener('hidden.bs.modal', () => {
     btnClose();
   });
